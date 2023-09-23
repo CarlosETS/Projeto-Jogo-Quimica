@@ -1,11 +1,10 @@
 import './Styles.css'
+import AppRoutes from './routes'
 
 function App() {
 
   return (
-    <div className='container'> 
-      <h1>Carlos</h1>
-    </div>
+    <AppRoutes/>
   )
 }
 
