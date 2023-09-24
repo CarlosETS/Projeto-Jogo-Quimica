@@ -1,7 +1,7 @@
 // import { DragDropContext } from 'react-beautiful-dnd';
 import SideBar from "../components/SideBar";
 
-const Home = () => {
+const Ranking = () => {
   console.log('BBBB')
   return (
     <>
@@ -12,4 +12,4 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default Ranking;
