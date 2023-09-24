@@ -1,8 +1,9 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { useState } from "react";
-import NavBar from "../components/NavBar";
+import React, { useState } from "react";
+import SideBar from "../components/SideBar";
+import "../assets/chemistrygame.css";
 
-const Workbench = () => {
+const ChemistryGame = () => {
   const finalSpaceCharacters = [
     {
       id: 'gary',
@@ -44,7 +45,7 @@ const Workbench = () => {
 
   return(
     <>
-      <NavBar></NavBar>
+      <SideBar/>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="area-droppable">
           {(provided) => (
@@ -77,4 +78,4 @@ const Workbench = () => {
   )
 }
 
-export default Workbench;
+export default ChemistryGame;
