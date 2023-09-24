@@ -14,8 +14,8 @@ const SideBar = () => {
 
             <ul className="space-y-1 border-t border-gray-100 pt-4">
               <li>
-                <a className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  component={Link} to={"/home"}>
+                <a href='/home' className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  >
                   <HomeIcon />
 
                   <span
@@ -26,8 +26,7 @@ const SideBar = () => {
                 </a>
               </li>
               <li>
-                <a className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  component={Link} to={"/ChemistryGame"}
+                <a href='/chemistrygame' className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <PlayArrowIcon />
                   <span
@@ -39,8 +38,7 @@ const SideBar = () => {
               </li>
 
               <li>
-                <a className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  component={Link} to={"/ranking"}
+                <a href='/ranking' className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <SportsScoreIcon />
                   <span
@@ -52,8 +50,7 @@ const SideBar = () => {
               </li>
 
               <li>
-                <a className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  component={Link} to={"/addquest"}
+                <a href='/addquest' className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <AddIcon />
 

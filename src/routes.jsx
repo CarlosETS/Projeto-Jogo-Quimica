@@ -15,7 +15,7 @@ export default function AppRoutes() {
     <Suspense fallback={<CircularProgress  />}>
       <Router>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="*" element={<Home />} />
           <Route path="/chemistrygame" element={<ChemistryGame />} />
           <Route path="/ranking" element={<Ranking />} />
           <Route path="/addquestions" element={<AddQuestions />} />
