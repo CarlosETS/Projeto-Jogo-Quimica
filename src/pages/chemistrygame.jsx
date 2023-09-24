@@ -34,46 +34,48 @@ const ChemistryGame = () => {
   const [elementos, setElementos] = useState(finalSpaceCharacters);
 
   const onDragEnd = (result) => {
-    console.log({result})
+    console.log({ result })
     if (!result.destination) return;
 
     const items = Array.from(elementos)
-    console.log({items})
+    console.log({ items })
     const [itemsReorganizados] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, itemsReorganizados);
   }
 
-  return(
+  return (
     <>
-      <SideBar/>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="area-droppable">
-          {(provided) => (
-            <ul className="elements" {...provided.droppableProps} ref={provided.innerRef}>
-              {elementos.map(({id, name, thumb}, index) => {
-                return (
-                  <Draggable key={id} draggableId={id} index={index}>
-                    {(provided) => (
-                      <li ref={provided.innerRef} 
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        <div className="elements-thumb">
-                          <img src={thumb} alt={`${name} Thumb`} />
-                        </div>
-                        <p>
-                          { name }
-                        </p>
-                      </li>
-                    )}
-                  </Draggable>
-                );
-              })}
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
-      </DragDropContext>
+      <SideBar />
+      <div className="container">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="area-droppable">
+            {(provided) => (
+              <ul className="elements" {...provided.droppableProps} ref={provided.innerRef}>
+                {elementos.map(({ id, name, thumb }, index) => {
+                  return (
+                    <Draggable key={id} draggableId={id} index={index}>
+                      {(provided) => (
+                        <li ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <div className="elements-thumb">
+                            <img src={thumb} alt={`${name} Thumb`} />
+                          </div>
+                          <p>
+                            {name}
+                          </p>
+                        </li>
+                      )}
+                    </Draggable>
+                  );
+                })}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
     </>
   )
 }

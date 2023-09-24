@@ -5,9 +5,6 @@ const Home = () => {
   console.log('BBBB')
   return (
     <>
-      <SideBar/>
-      <div className='container'>
-        </div>
     </>
   )
 }
