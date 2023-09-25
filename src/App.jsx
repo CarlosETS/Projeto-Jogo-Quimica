@@ -1,10 +1,15 @@
 import './Styles.css'
+import SideBar from './components/SideBar'
 import AppRoutes from './routes'
 
 function App() {
 
   return (
-    <AppRoutes/>
+    <div className='flex'>
+      <SideBar/>
+
+      <AppRoutes />
+    </div>
   )
 }
 

@@ -3,7 +3,6 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import AddIcon from '@mui/icons-material/Add';
 import HomeIcon from '@mui/icons-material/Home';
-import { Link } from 'react-router-dom';
 
 const SideBar = () => {
   return (
@@ -15,7 +14,7 @@ const SideBar = () => {
             <ul className="space-y-1 border-t border-gray-100 pt-4">
               <li>
                 <a href='/home' className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                  >
+                >
                   <HomeIcon />
 
                   <span
@@ -50,7 +49,7 @@ const SideBar = () => {
               </li>
 
               <li>
-                <a href='/addquest' className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                <a href='/addquestions' className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <AddIcon />
 

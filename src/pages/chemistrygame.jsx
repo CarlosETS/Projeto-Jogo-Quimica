@@ -1,6 +1,5 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import React, { useState } from "react";
-import SideBar from "../components/SideBar";
 import "../assets/chemistrygame.css";
 
 const ChemistryGame = () => {
@@ -45,7 +44,6 @@ const ChemistryGame = () => {
 
   return (
     <>
-      <SideBar />
       <div className="container">
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="area-droppable">

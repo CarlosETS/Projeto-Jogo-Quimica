@@ -2,7 +2,16 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
     background: linear-gradient(#000000, #332E33);
+}
+
+.buttons{
+    border: none;
+    padding: 20px;
+}
+
+.text{
+    border: nome;
+    margin-bottom: 20px;
 }
