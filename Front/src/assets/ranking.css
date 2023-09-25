@@ -1,0 +1,10 @@
+.container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(#000000, #332E33);
+}
+
+.custom-size {
+    width: 500px;
+  }
