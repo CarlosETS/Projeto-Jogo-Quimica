@@ -1,6 +1,5 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import Elementos from './src/data/elements.js';
 
 const app = express();
 const PORT = 3100;
