@@ -6,6 +6,7 @@ import Home from './pages/home.jsx'
 import ChemistryGame from './pages/chemistrygame.jsx'
 import Ranking from './pages/ranking.jsx';
 import AddQuestions from './pages/addquetion.jsx';
+import SaltFormation from './pages/saltformation.jsx';
 
 // const Componente = lazy(() => import('./pages/Auth/Login'))
 
@@ -17,7 +18,7 @@ export default function AppRoutes() {
         <Router>
           <Routes>
             <Route path="/home" element={<Home />} />
-            <Route path="/chemistrygame" element={<ChemistryGame />} />
+            <Route path="/saltformation" element={<SaltFormation />} />
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/addquestions" element={<AddQuestions />} />
           </Routes>
