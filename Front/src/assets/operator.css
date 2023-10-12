@@ -1,0 +1,39 @@
+/* styles.css */
+
+/* Estilos para ControlsForm */
+.controls-container {
+    background-color: #005f8c;
+  }
+  
+  /* Estilos para ListItem */
+  .list-item {
+    background-color: #005f8c;
+    color: white;
+  }
+  
+  /* Estilos para ícone de TextFields */
+  .icon {
+    color: white;
+  }
+  
+  /* Estilos para Operador */
+  .operator-container {
+    display: flex;
+    background-color: yellowGreen;
+    width: 250px;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+  
+  /* Estilos para os campos em branco dentro do Operador */
+  .operator-blank {
+    width: 40%;
+    background-color: white;
+    border-radius: 10px;
+    min-height: 40px;
+  }
+  
+  /* Outros estilos podem ser adicionados conforme necessário */
+  

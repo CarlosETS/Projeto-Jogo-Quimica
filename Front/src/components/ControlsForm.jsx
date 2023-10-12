@@ -1,10 +1,14 @@
 import React from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
+
+
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import TextFieldsIcon from "@mui/icons-material/TextFields";
+
+import "../assets/operator.css"; // Importe o arquivo CSS
 
 const controls = [
   {
@@ -53,16 +57,16 @@ function ControlsForm() {
   return (
     <Droppable droppableId="controls_droppable" type="controls" isDropDisabled={true}>
       {(provided, snapshot) => (
-        <List style={{ backgroundColor: "#005f8c" }} {...provided.droppableProps} ref={provided.innerRef}>
+        <List className="controls-container" {...provided.droppableProps} ref={provided.innerRef}>
           {controls.map((control, index) => (
             <Draggable key={`control_draggable_${control.value}`} draggableId={control.value} index={index}>
               {(provided, snapshot) => (
                 <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                  <ListItem key={control.value} style={{ backgroundColor: "#005f8c" }}>
+                  <ListItem className="list-item">
                     <ListItemIcon>
-                      <TextFieldsIcon style={{ color: "white" }} />
+                      <TextFieldsIcon className="icon" />
                     </ListItemIcon>
-                    <ListItemText style={{ color: "white" }}>
+                    <ListItemText className="list-item">
                       {control.label}
                     </ListItemText>
                   </ListItem>
