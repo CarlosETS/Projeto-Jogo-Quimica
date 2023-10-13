@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import IUsers from '../interfaces/IElements';
 
 const schema = new mongoose.Schema({
   name: { type: String },
@@ -8,6 +7,6 @@ const schema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-const Users = mongoose.model<IUsers>('Users', schema);
+const Users = mongoose.model('Users', schema);
 
 export default Users;

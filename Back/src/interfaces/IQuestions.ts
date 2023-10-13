@@ -1,5 +1,5 @@
 export default interface IQuestions {
-  _id?: string;
+  id?: string;
   text: string;
   createdAt?: any;
   updatedAt?: any;
