@@ -1,8 +1,13 @@
 .container{
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(#000000, #332E33);
+    margin-top: 3rem;
+    text-align: center;
+    color: rgb(162, 105, 216);
+}
+
+.sidebar{
+    position: fixed;
 }
