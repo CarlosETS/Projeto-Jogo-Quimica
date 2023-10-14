@@ -6,9 +6,13 @@ function App() {
 
   return (
     <div className='flex'>
-      <SideBar/>
+      <div className='sidebar'>
+        <SideBar />
+      </div>
+      <div className='container'>
+        <AppRoutes />
+      </div>
 
-      <AppRoutes />
     </div>
   )
 }

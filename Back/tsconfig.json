@@ -1,0 +1,52 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"lib": [
+				"es6"
+		],
+		"sourceMap": true,
+		"strictPropertyInitialization": false,
+		"allowJs": true,
+		"outDir": "build",
+		"rootDir": ".",
+		"strict": true,
+		"noImplicitAny": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"baseUrl": ".",
+		"paths": {
+			"@src/*": [
+					"./src/*"
+			],
+			"@controllers/*": [
+					"./src/controllers/*"
+			],
+			"@services/*": [
+					"./src/services/*"
+			],
+			"@routes/*": [
+					"./src/routes/*"
+			],
+			"@data/*": [
+					"./src/data/*"
+			],
+			"@interfaces/*": [
+					"./src/interfaces/*"
+			],
+			"@utils/*": [
+					"./src/utils/*"
+			]
+		},
+		"skipLibCheck": true
+	},
+	"include": [
+		"src/*"
+	],
+	"exclude": [
+		"node_modules",
+		"./node_modules",
+		"./node_modules/*",
+		"./node_modules/@types/node/index.d.ts",
+	]
+}
