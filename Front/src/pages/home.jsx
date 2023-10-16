@@ -1,8 +1,10 @@
 import Welcome from "../components/Welcome.jsx";
+
 import '../assets/home.css'
 
+
 const Home = () => {
-  console.log('BBBB')
+
   return (
     <>
       <div className="home text-5xl font-bold">

@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import questions from "../data/questions.jsx";
 
-const STAGES = ["Start", "Category", "Playing", "End"];
+const STAGES = ["Start", "Playing", "End"];
 
 const initialState = {
   gameStage: STAGES[0],
@@ -13,7 +13,8 @@ const initialState = {
   optionToHide: null,
 };
 
-console.log(initialState);
+console.log('Quiz context')
+console.log('estado inicial', initialState);
 
 const quizReducer = (state, action) => {
   switch (action.type) {
@@ -24,18 +25,12 @@ const quizReducer = (state, action) => {
       };
 
     case "START_GAME":
-      let quizQuestions = null;
-
-      state.questions.forEach((question) => {
-        if (question.category === action.payload) {
-          quizQuestions = question.questions;
-        }
-      });
+      let quizQuestions = questions;
 
       return {
         ...state,
         questions: quizQuestions,
-        gameStage: STAGES[2],
+        gameStage: STAGES[1],
       };
 
     case "REORDER_QUESTIONS":
@@ -56,10 +51,11 @@ const quizReducer = (state, action) => {
         endGame = true;
       }
 
+      console.log(endGame);
       return {
         ...state,
         currentQuestion: nextQuestion,
-        gameStage: endGame ? STAGES[3] : state.gameStage,
+        gameStage: endGame ? STAGES[2] : state.gameStage,
         answerSelected: false,
         help: false,
       };

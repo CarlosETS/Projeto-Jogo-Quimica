@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { QuizContext } from "../context/quis.jsx";
+import { QuizContext } from "../context/quiz.jsx";
 
 import "../assets/option.css";
 
