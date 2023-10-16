@@ -25,15 +25,6 @@ const SideBar = () => {
                   </a>
                 </li>
                 <li>
-                  <a href='/chemistrygame' className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700">
-                    <PlayArrowIcon />
-                    <span
-                      className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                      Jogar
-                    </span>
-                  </a>
-                </li>
-                <li>
                   <a href='/ranking' className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700">
                     <SportsScoreIcon />
                     <span

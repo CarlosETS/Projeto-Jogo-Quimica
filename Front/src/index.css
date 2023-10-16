@@ -11,7 +11,7 @@
 body,html{
   min-height: 100vh;
   height: 100%;
-  background: linear-gradient(#000000, #332E33);
+  background: linear-gradient( #FFF18C, #DDEAA3, #ADE4B5, #71DBD2);
 }
 
 img{
