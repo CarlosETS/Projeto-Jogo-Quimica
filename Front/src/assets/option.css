@@ -1,32 +1,71 @@
 .option {
-    background-color: #72DBD3;
-    border-radius: 0.5rem;
-    border: 2px solid #261833;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: 0.4s;
-  }
-  
-  .option:hover {
-    opacity: 1;
-  }
-  
-  #options-container .option p {
-    margin-bottom: 0;
-  }
-  
-  .correct {
-    background-color: #67DB90;
-    font-weight: bold;
-  }
-  
-  .wrong {
-    background-color: #DB8B88;
-    opacity: 0.5;
-  }
-  
-  .hide {
-    display: none;
-  }
+  background-color: #72DBD3;
+  border-radius: 0.5rem;
+  border: 2px solid #261833;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.4s;
+  position: relative;
+}
+
+.option:hover {
+  opacity: 1;
+}
+
+#options-container .option p {
+  margin-bottom: 0;
+}
+
+.correct {
+  background-color: #67DB90;
+  font-weight: bold;
+}
+
+.wrong {
+  background-color: #DB8B88;
+  opacity: 0.5;
+}
+
+.correct::before {
+  content: "✓"; /* Content for the correct answer marker */
+  color: green; /* Color for the correct answer marker */
+  position: absolute;
+  top: 5px; /* Adjust the positioning from the top */
+  left: 5px; /* Adjust the positioning from the left */
+}
+
+.wrong::before {
+  content: "✗"; /* Content for the wrong answer marker */
+  color: red; /* Color for the wrong answer marker */
+  position: absolute;
+  top: 5px; /* Adjust the positioning from the top */
+  right: 5px; /* Adjust the positioning from the right */
+}
+
+.clicked::after {
+  content: "•"; /* Content for the clicked answer marker (a simple circle) */
+  color: green; /* Color for the clicked answer marker */
+  position: absolute;
+  bottom: 5px; /* Adjust the positioning from the bottom */
+  right: 5px; /* Adjust the positioning from the right */
+}
+
+.checkmark {
+  color: green;
+}
+
+.crossmark {
+  color: red;
+}
+
+.light-wrong {
+  color: #ff9999;
+  /* Use a lighter shade of red for other incorrect options */
+  /* Add any other styles for a light-wrong option here */
+}
+
+.hide {
+  display: none;
+}
