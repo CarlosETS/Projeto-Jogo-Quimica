@@ -5,7 +5,7 @@ import { CircularProgress } from '@mui/material';
 import Home from './pages/home.jsx'
 import ChemistryGame from './pages/chemistrygame.jsx'
 import Ranking from './pages/ranking.jsx';
-import AddQuestions from './pages/addquetion.jsx';
+import AddQuestions from './pages/admins/addQuestions.jsx';
 
 // const Componente = lazy(() => import('./pages/Auth/Login'))
 

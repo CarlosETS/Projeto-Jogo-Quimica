@@ -9,7 +9,7 @@ const Home = () => {
         <h1>QuimiQuiz</h1>
 
       </div>
-      <div><Welcome /></div>
+      <Welcome />
     </>
   )
 }
