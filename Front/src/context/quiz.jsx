@@ -1,4 +1,5 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useContext } from "react";
+
 import questions from "../data/questions.jsx";
 
 const STAGES = ["Start", "Playing", "End"];
@@ -11,12 +12,14 @@ const initialState = {
   score: 0,
   help: false,
   optionToHide: null,
+  correctIndex: -1, // Inclua esta propriedade para manter o índice da resposta correta
 };
 
 console.log('Quiz context')
 console.log('estado inicial', initialState);
 
 const quizReducer = (state, action) => {
+
   switch (action.type) {
     case "CHANGE_STAGE":
       return {
@@ -33,33 +36,53 @@ const quizReducer = (state, action) => {
         gameStage: STAGES[1],
       };
 
-    case "REORDER_QUESTIONS":
-      const reorderedQuestions = state.questions.sort(() => {
-        return Math.random() - 0.5;
-      });
-
-      return {
-        ...state,
-        questions: reorderedQuestions,
-      };
-
+      case "REORDER_QUESTIONS": {
+        const reorderedQuestions = state.questions.sort(() => {
+          return Math.random() - 0.5;
+        });
+      
+        // Encontre o índice da resposta correta na nova ordem
+        const correctIndex = reorderedQuestions.findIndex(
+          (question) => question.answer === state.questions[state.currentQuestion].answer
+        );
+      
+        return {
+          ...state,
+          questions: reorderedQuestions,
+          correctIndex, // Atualize o correctIndex
+        };
+      }
+      
     case "CHANGE_QUESTION": {
-      const nextQuestion = state.currentQuestion + 1;
+      let questions = state.questions.slice(); // Crie uma cópia da lista de perguntas
       let endGame = false;
 
-      if (!state.questions[nextQuestion]) {
+      // Verifique se já chegou ao final do jogo
+      if (state.currentQuestion + 1 >= questions.length) {
         endGame = true;
       }
 
-      console.log(endGame);
+      if (!endGame) {
+        // Reordene as perguntas antes de passar para a próxima pergunta
+        questions = questions.sort(() => Math.random() - 0.5);
+      }
+
+      const nextQuestion = state.currentQuestion + 1;
+      const currentQuestion = questions[nextQuestion];
+      const correctAnswer = currentQuestion ? currentQuestion.answer : '';
+      const correctIndex = currentQuestion ? currentQuestion.options.indexOf(correctAnswer) : -1;
+
       return {
         ...state,
         currentQuestion: nextQuestion,
         gameStage: endGame ? STAGES[2] : state.gameStage,
         answerSelected: false,
         help: false,
+        correctIndex, // Atualize o correctIndex
+        questions, // Atualize a lista reordenada
       };
     }
+
 
     case "NEW_GAME": {
       console.log(questions);

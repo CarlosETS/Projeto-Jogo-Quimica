@@ -18,52 +18,52 @@
   margin-bottom: 0;
 }
 
+/* Adicione essas classes no seu arquivo de estilos CSS */
 .correct {
-  background-color: #67DB90;
-  font-weight: bold;
+  background-color: lightgreen;
+  /* Fundo verde para resposta correta */
+  pointer-events: none;
+  /* Desativa eventos de clique nas respostas corretas */
 }
 
 .wrong {
-  background-color: #DB8B88;
-  opacity: 0.5;
+  background-color: lightcoral;
+  /* Fundo vermelho para respostas erradas */
+  pointer-events: none;
+  /* Desativa eventos de clique nas respostas erradas */
+  opacity: 0.7;
 }
 
-.correct::before {
-  content: "✓"; /* Content for the correct answer marker */
-  color: green; /* Color for the correct answer marker */
+.wrong-clicked {
+  background-color: red;
+  /* Fundo vermelho para respostas erradas */
+  pointer-events: none;
+  /* Desativa eventos de clique nas respostas erradas */
+}
+
+.image-mark {
   position: absolute;
-  top: 5px; /* Adjust the positioning from the top */
-  left: 5px; /* Adjust the positioning from the left */
+  bottom: -11px;
+  right: -30px;
+  width: 100px;
+  /* Defina o tamanho desejado */
+  height: auto;
 }
 
-.wrong::before {
-  content: "✗"; /* Content for the wrong answer marker */
-  color: red; /* Color for the wrong answer marker */
-  position: absolute;
-  top: 5px; /* Adjust the positioning from the top */
-  right: 5px; /* Adjust the positioning from the right */
+.image-mark {
+  animation: pulse 2s infinite;
 }
 
-.clicked::after {
-  content: "•"; /* Content for the clicked answer marker (a simple circle) */
-  color: green; /* Color for the clicked answer marker */
-  position: absolute;
-  bottom: 5px; /* Adjust the positioning from the bottom */
-  right: 5px; /* Adjust the positioning from the right */
-}
+@keyframes pulse {
 
-.checkmark {
-  color: green;
-}
+  0%,
+  100% {
+    transform: scale(1);
+  }
 
-.crossmark {
-  color: red;
-}
-
-.light-wrong {
-  color: #ff9999;
-  /* Use a lighter shade of red for other incorrect options */
-  /* Add any other styles for a light-wrong option here */
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 .hide {

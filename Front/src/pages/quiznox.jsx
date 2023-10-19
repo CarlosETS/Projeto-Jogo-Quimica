@@ -4,6 +4,7 @@ import { QuizContext } from "../context/quiz.jsx";
 import Option from "../components/Option.jsx";
 import GameOver from "../components/GameOver.jsx";
 
+import Img from "../img/explam-image.png"
 import "../assets/question.css";
 
 const QuizNox = () => {
@@ -42,13 +43,14 @@ const QuizNox = () => {
           </p>
           <h2>{currentQuestion.question}</h2>
           <div id="options-container">
-            {currentQuestion.options.map((option) => (
+            {currentQuestion.options.map((option, index) => (
               <Option
                 option={option}
                 key={option}
                 answer={currentQuestion.answer}
-                selectOption={() => onSelectOption(option)}
+                selectOption={(selectedIndex) => onSelectOption(option, selectedIndex)} // Passe o índice
                 hide={quizState.optionToHide === option ? "hide" : null}
+                index={index}
               />
             ))}
           </div>
@@ -71,6 +73,13 @@ const QuizNox = () => {
             </button>
           )}
         </>
+      )}
+      {!gameOver && (
+        <img
+          src={Img} // Use chaves para envolver a variável
+          alt="Explicação das respostas"
+          className="bottom-left-image"
+        />
       )}
     </div>
   );
