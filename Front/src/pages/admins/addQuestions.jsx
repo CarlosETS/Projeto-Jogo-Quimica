@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
+import questoesService from '../../services/QuestionService';
 
 const AddQuestions = () => {
   const formik = useFormik({
@@ -10,8 +11,15 @@ const AddQuestions = () => {
       question: '',
       responses: [{ text: '', isCorrect: false }],
     },
-    onSubmit: (values) => {
-      console.log('Form values:', values);
+    onSubmit: async (values) => {
+      try {
+        console.log('Form values:', values);
+        await questoesService.create(values.question).then(() => {
+          console.log('TERMINEI')
+        });
+      } catch (error) {
+        console.log(error)
+      }
     },
   });
 

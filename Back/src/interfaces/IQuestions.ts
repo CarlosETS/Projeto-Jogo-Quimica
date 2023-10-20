@@ -1,6 +1,7 @@
 export default interface IQuestions {
   id?: string;
-  text: string;
+  question: string;
+  responses?: [];
   createdAt?: any;
   updatedAt?: any;
 }

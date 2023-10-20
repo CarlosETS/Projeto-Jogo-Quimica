@@ -17,7 +17,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@src/*": [
-					"./src/*"
+					"./src/"
 			],
 			"@controllers/*": [
 					"./src/controllers/*"

@@ -4,8 +4,10 @@ import questionService from '../services/questionService'
 class QuestionController {
   async create(req: Request, res: Response){
     try {
+      console.log("req.body")
+      console.log(req.body)
       await questionService.create(req.body);
-      res.status(200).json({});
+      res.status(200).json({msg: 'CADASSTREI'});
     } catch (error) {
       console.log({error})
       res.status(400).json({error});
