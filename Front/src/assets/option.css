@@ -1,5 +1,6 @@
 .option {
-  background-color: #72DBD3;
+  background-color: #7299db; /* Cor de contraste: Vermelho */
+  color: #FFF; /* Texto em branco para contraste */
   border-radius: 0.5rem;
   border: 2px solid #261833;
   padding: 1rem;
@@ -8,6 +9,7 @@
   opacity: 0.8;
   transition: 0.4s;
   position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .option:hover {
@@ -43,9 +45,9 @@
 
 .image-mark {
   position: absolute;
-  bottom: -11px;
-  right: -30px;
-  width: 100px;
+  bottom: -10px;
+  right: 0px;
+  width: 70px;
   /* Defina o tamanho desejado */
   height: auto;
 }

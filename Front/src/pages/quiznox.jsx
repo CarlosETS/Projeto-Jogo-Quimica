@@ -59,7 +59,7 @@ const QuizNox = () => {
               {currentQuestion.tip && (
                 <button onClick={() => dispatch({ type: "SHOW_TIP" })}>Dica</button>
               )}
-              <button onClick={() => dispatch({ type: "REMOVE_OPTION" })}>
+              <button className="button" onClick={() => dispatch({ type: "REMOVE_OPTION" })}>
                 Excluir uma
               </button>
             </>
@@ -68,7 +68,7 @@ const QuizNox = () => {
             <p>{currentQuestion.tip}</p>
           )}
           {quizState.answerSelected && (
-            <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
+            <button className="button" onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
               Continuar
             </button>
           )}

@@ -8,11 +8,13 @@
   font-family: sans-serif;
 }
 
-body,html{
+body, html {
   min-height: 100vh;
   height: 100%;
-  background: linear-gradient( #FFF18C, #DDEAA3, #ADE4B5, #71DBD2);
+  background: linear-gradient(to bottom, #E9FFDB, #C1FFB0);
 }
+
+
 
 img{
   max-width: 100;

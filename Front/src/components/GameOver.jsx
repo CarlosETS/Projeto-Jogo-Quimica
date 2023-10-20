@@ -1,24 +1,27 @@
 import React, { useContext } from "react";
-
 import { QuizContext } from "../context/quiz.jsx";
-
 import "../assets/gameover.css";
 
 const GameOver = () => {
   const [quizState, dispatch] = useContext(QuizContext);
 
-  console.log('gameover')
   return (
     <div id="gameover">
-      <h2>Fim de jogo!</h2>
-      <p>Pontuação: {quizState.score}</p>
+      <h2>Fim de Jogo</h2>
+      <p className="score">Pontuação: {quizState.score}</p>
       <p>
         Você acertou {quizState.score} de {quizState.questions.length}{" "}
         perguntas.
       </p>
-      <img src={''} alt="Fim do Quiz" />
-      <button onClick={() => dispatch({ type: "NEW_GAME" })}>Reiniciar</button>
-      <button onClick={() => dispatch({ url: '/home'})}>Retorar a tela inicial</button>
+      <img src="" alt="Fim do Quiz" className="gameover-image" />
+      <div className="button-container">
+        <a className="restart-button" href="/quiznox">
+          Reiniciar
+        </a>
+        <a className="home-button" href="/home">
+          Retornar à Tela Inicial
+        </a>
+      </div>
     </div>
   );
 };
