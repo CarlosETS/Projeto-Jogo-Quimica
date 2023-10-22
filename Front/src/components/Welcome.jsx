@@ -3,6 +3,7 @@ import '../assets/welcome.css'
 
 const Welcome = () => {
   return (
+    
     <div className='welcome'>
         <h2 className='text-4xl'>Seja bem vindo</h2>
         <p className='text-blue-600'>Escolha qual dos jogo deseja jogar:</p>
