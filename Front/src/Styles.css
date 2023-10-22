@@ -1,13 +1,9 @@
 .container{
     height: 100vh;
-    display: flex;
+    display: flex;  
     align-items: center;
     flex-direction: column;
-    margin-top: 3rem;
     text-align: center;
-    color: rgb(0, 0, 0);
-}
-
-.sidebar{
-    position: fixed;
+    margin-left: calc(4rem);
+    color: rgb(162, 105, 216);
 }

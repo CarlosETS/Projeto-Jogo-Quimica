@@ -4,11 +4,6 @@ import Modal from './Modal.jsx';
 import '../assets/welcome.css';
 
 const Welcome = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [title, setTitle] = useState('');
-  const [resume, setResume] = useState('');
-  const [url, setUrl] = useState('');
-  const [quizState, dispatch] = useContext(QuizContext);
 
   function createModal(titleParams, resumeParams, urlParams) {
     setOpenModal(true);
