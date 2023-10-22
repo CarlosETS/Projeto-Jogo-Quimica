@@ -1,9 +1,10 @@
 .option {
-  background-color: #7299db; /* Cor de contraste: Vermelho */
-  color: #FFF; /* Texto em branco para contraste */
+  background-color: #ffffff; /* Cor de contraste: Vermelho */
+  color: #000000; /* Texto em branco para contraste */
   border-radius: 0.5rem;
-  border: 2px solid #261833;
+  /*border: 2px solid #261833;*/
   padding: 1rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   cursor: pointer;
   opacity: 0.8;

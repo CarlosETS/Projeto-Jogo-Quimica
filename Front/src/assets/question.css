@@ -1,16 +1,25 @@
 #question {
   background-color: #27b7bf;
   border-radius: 1rem;
-  padding: 2rem;
-  width: 500px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem; /* Reduzindo um pouco o padding para economizar espaço */
+  max-width: 100%; /* Tornando o elemento responsivo à largura da tela */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajustando a sombra para uma aparência mais suave */
 }
+
+
 .p {
-  margin-bottom: 2rem;
+  margin-top: 0; /* Removendo a margem superior para colocá-lo mais perto do topo */
+  margin-bottom: 1rem; /* Adicionando uma pequena margem inferior */
+  font-weight: bold; /* Definindo o texto em negrito */
+  font-size: 1.2rem; /* Tornando o texto um pouco maior */
 }
 
 .h2 {
-  margin-bottom: 5rem;
+  margin-top: 0; /* Removendo a margem superior para colocá-lo mais perto do topo */
+  margin-bottom: 1rem; /* Adicionando uma pequena margem inferior */
+  font-weight: bold; /* Definindo o texto em negrito */
+  font-size: 1.4rem; /* Tornando o texto um pouco maior */
+  padding-bottom: 5px;
 }
 
 .button {
