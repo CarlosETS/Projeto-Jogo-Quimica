@@ -12,9 +12,8 @@ body, html {
   min-height: 100vh;
   height: 100%;
   background: linear-gradient(to bottom, #FFF18C, #C1FFB0, #71DBD2);
+  background-attachment: fixed;
 }
-
-
 
 img{
   max-width: 100;

@@ -145,7 +145,7 @@ const quizReducer = (state, action) => {
 export const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
-  const value = useReducer(quizReducer, initialState);
+  const [state, dispatch] = useReducer(quizReducer, initialState);
 
-  return <QuizContext.Provider value={value}>{children}</QuizContext.Provider>;
+  return <QuizContext.Provider value={[state, dispatch]}>{children}</QuizContext.Provider>;
 };

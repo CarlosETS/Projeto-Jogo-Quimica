@@ -2,8 +2,8 @@
     height: 100vh;
     display: flex;  
     align-items: center;
+    margin-top: 1.5rem;
     flex-direction: column;
     text-align: center;
-    margin-left: calc(4rem);
-    color: rgb(162, 105, 216);
+    color: rgb(0, 0, 0);
 }
