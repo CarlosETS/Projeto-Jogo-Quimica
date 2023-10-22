@@ -4,7 +4,7 @@ import { QuizContext } from "../context/quiz.jsx";
 import Option from "../components/Option.jsx";
 import GameOver from "../components/GameOver.jsx";
 
-import Img from "../img/explam-image.png"
+import Img from "../img/explam-image.png";
 import "../assets/question.css";
 
 const QuizNox = () => {
@@ -12,7 +12,7 @@ const QuizNox = () => {
   const currentQuestion = quizState.questions[quizState.currentQuestion];
   const [gameOver, setGameOver] = useState(false);
 
-  const onSelectOption = (option) => {
+  const onSelectOption = (option, selectedIndex) => {
     dispatch({
       type: "CHECK_ANSWER",
       payload: { answer: currentQuestion.answer, option },
@@ -26,11 +26,9 @@ const QuizNox = () => {
 
   useEffect(() => {
     if (quizState.gameStage === "End") {
-      setGameOver(true); // Define gameOver como true quando o jogo termina
+      setGameOver(true);
     }
   }, [quizState.gameStage]);
-
-  console.log(quizState);
 
   return (
     <div id="question">
@@ -47,9 +45,7 @@ const QuizNox = () => {
               <Option
                 option={option}
                 key={option}
-                answer={currentQuestion.answer}
-                selectOption={(selectedIndex) => onSelectOption(option, selectedIndex)} // Passe o índice
-                hide={quizState.optionToHide === option ? "hide" : null}
+                selectOption={onSelectOption}
                 index={index}
               />
             ))}
@@ -59,7 +55,10 @@ const QuizNox = () => {
               {currentQuestion.tip && (
                 <button onClick={() => dispatch({ type: "SHOW_TIP" })}>Dica</button>
               )}
-              <button className="button" onClick={() => dispatch({ type: "REMOVE_OPTION" })}>
+              <button
+                className="button"
+                onClick={() => dispatch({ type: "REMOVE_OPTION" })}
+              >
                 Excluir uma
               </button>
             </>
@@ -68,7 +67,10 @@ const QuizNox = () => {
             <p>{currentQuestion.tip}</p>
           )}
           {quizState.answerSelected && (
-            <button className="button" onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
+            <button
+              className="button"
+              onClick={() => dispatch({ type: "CHANGE_QUESTION" })}
+            >
               Continuar
             </button>
           )}
@@ -76,7 +78,7 @@ const QuizNox = () => {
       )}
       {!gameOver && (
         <img
-          src={Img} // Use chaves para envolver a variável
+          src={Img}
           alt="Explicação das respostas"
           className="bottom-left-image"
         />

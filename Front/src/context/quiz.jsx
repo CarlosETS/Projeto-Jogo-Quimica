@@ -1,25 +1,24 @@
-import React, { createContext, useReducer, useContext } from "react";
-
-import questions from "../data/questions.jsx";
+import React, { createContext, useReducer, useContext, useEffect } from "react";
+import * as Yup from 'yup';
+import questoesService from '../services/QuestionService.js';
 
 const STAGES = ["Start", "Playing", "End"];
 
 const initialState = {
   gameStage: STAGES[0],
-  questions,
+  questions: [],
   currentQuestion: 0,
   answerSelected: false,
   score: 0,
   help: false,
   optionToHide: null,
-  correctIndex: -1, // Inclua esta propriedade para manter o índice da resposta correta
+  correctIndex: -1,
 };
 
 console.log('Quiz context')
 console.log('estado inicial', initialState);
 
 const quizReducer = (state, action) => {
-
   switch (action.type) {
     case "CHANGE_STAGE":
       return {
@@ -28,43 +27,38 @@ const quizReducer = (state, action) => {
       };
 
     case "START_GAME":
-      let quizQuestions = questions;
-
       return {
         ...state,
-        questions: quizQuestions,
+        questions: action.questions,
         gameStage: STAGES[1],
       };
 
-      case "REORDER_QUESTIONS": {
-        const reorderedQuestions = state.questions.sort(() => {
-          return Math.random() - 0.5;
-        });
-      
-        // Encontre o índice da resposta correta na nova ordem
-        const correctIndex = reorderedQuestions.findIndex(
-          (question) => question.answer === state.questions[state.currentQuestion].answer
-        );
-      
-        return {
-          ...state,
-          questions: reorderedQuestions,
-          correctIndex, // Atualize o correctIndex
-        };
-      }
-      
+    case "REORDER_QUESTIONS": {
+      const reorderedQuestions = state.questions.slice().sort(() => {
+        return Math.random() - 0.5;
+      });
+
+      const correctIndex = reorderedQuestions.findIndex(
+        (question) => question.answer === state.questions[state.currentQuestion].answer
+      );
+
+      return {
+        ...state,
+        questions: reorderedQuestions,
+        correctIndex,
+      };
+    }
+
     case "CHANGE_QUESTION": {
-      let questions = state.questions.slice(); // Crie uma cópia da lista de perguntas
+      let questions = state.questions.slice();
       let endGame = false;
 
-      // Verifique se já chegou ao final do jogo
       if (state.currentQuestion + 1 >= questions.length) {
         endGame = true;
       }
 
       if (!endGame) {
-        // Reordene as perguntas antes de passar para a próxima pergunta
-        questions = questions.sort(() => Math.random() - 0.5);
+        questions = questions.slice().sort(() => Math.random() - 0.5);
       }
 
       const nextQuestion = state.currentQuestion + 1;
@@ -78,15 +72,12 @@ const quizReducer = (state, action) => {
         gameStage: endGame ? STAGES[2] : state.gameStage,
         answerSelected: false,
         help: false,
-        correctIndex, // Atualize o correctIndex
-        questions, // Atualize a lista reordenada
+        correctIndex,
+        questions,
       };
     }
 
-
     case "NEW_GAME": {
-      console.log(questions);
-      console.log(initialState);
       return initialState;
     }
 
@@ -115,11 +106,6 @@ const quizReducer = (state, action) => {
 
     case "REMOVE_OPTION": {
       const questionWithoutOption = state.questions[state.currentQuestion];
-
-      console.log(state.currentQuestion);
-
-      console.log(questionWithoutOption);
-
       let repeat = true;
       let optionToHide;
 
@@ -146,6 +132,19 @@ export const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
   const [state, dispatch] = useReducer(quizReducer, initialState);
+
+  const fetchAndSetQuestions = async () => {
+    try {
+      const questions = await questoesService.listarQuestoes(); // Chame o método correto para buscar perguntas do serviço
+      dispatch({ type: "START_GAME", questions });
+    } catch (error) {
+      console.error('Erro ao buscar as perguntas: ' + error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchAndSetQuestions();
+  }, []);
 
   return <QuizContext.Provider value={[state, dispatch]}>{children}</QuizContext.Provider>;
 };
