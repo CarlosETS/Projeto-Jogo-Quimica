@@ -1,7 +1,9 @@
+import { Schema } from "mongoose";
+
 export default interface IQuestions {
-  id?: string;
-  question: string;
-  responses?: [];
+  id?: string | Schema.Types.ObjectId;
+  question?: string;
+  responses?: [{}];
   createdAt?: any;
   updatedAt?: any;
 }

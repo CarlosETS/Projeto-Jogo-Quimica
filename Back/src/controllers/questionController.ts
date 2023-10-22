@@ -4,12 +4,9 @@ import questionService from '../services/questionService'
 class QuestionController {
   async create(req: Request, res: Response){
     try {
-      console.log("req.body")
-      console.log(req.body)
       await questionService.create(req.body);
       res.status(200).json({msg: 'CADASSTREI'});
     } catch (error) {
-      console.log({error})
       res.status(400).json({error});
     }
   }
@@ -26,7 +23,6 @@ class QuestionController {
 
   async update(req: Request, res: Response){
     try {
-      console.log({"req.params": req.params})
       await questionService.update(req.params.id, req.body);
       res.status(200).json({});
     } catch (error) {
@@ -36,7 +32,7 @@ class QuestionController {
   }
   async getOneQuestion(req: Request, res: Response){
     try {
-      const data = await questionService.getOneQuestion(req.body);
+      const data = await questionService.getOneQuestion(req.params.id);
       res.status(200).json({data});
     } catch (error) {
       console.log({error})
