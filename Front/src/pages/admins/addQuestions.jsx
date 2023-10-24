@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useFormik } from 'formik';
 
 import * as Yup from 'yup';
 import AddIcon from '@mui/icons-material/Add';
@@ -34,7 +35,7 @@ const AddQuestions = () => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        console.log('Form values:', values);
+        console.log('Form values:', values); // Adicione esta linha
         await questoesService.create(values.question, values.responses);
         console.log('TERMINEI');
       } catch (error) {
@@ -147,12 +148,12 @@ const AddQuestions = () => {
             </IconButton>
           </div>
         )}
-        <a
+        <button
           type="submit"
           className="button focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 ml-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         >
           Salvar
-        </a>
+        </button>
         <a
           href="/home"
           id="cancel"

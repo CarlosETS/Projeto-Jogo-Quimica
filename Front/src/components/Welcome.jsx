@@ -1,6 +1,7 @@
-import React, { useState, useContext } from 'react';
-import { QuizContext } from "../context/quiz";
+import React, { useState } from 'react';
+
 import Modal from './Modal.jsx';
+
 import '../assets/welcome.css';
 
 const Welcome = () => {
@@ -8,8 +9,6 @@ const Welcome = () => {
   const [title, setTitle] = useState('');
   const [resume, setResume] = useState('');
   const [url, setUrl] = useState('');
-
-  const { dispatch } = useContext(QuizContext);
 
   function createModal(titleParams, resumeParams, urlParams) {
     setOpenModal(true);
@@ -24,8 +23,7 @@ const Welcome = () => {
       'O estado de oxidação, também chamado de número de oxidação, é uma abordagem para atribuir o valor da carga que um átomo em uma substância possui.',
       '/quiznox'
     );
-    dispatch({ type: "CHANGE_STAGE" });
-  }
+  };
 
   return (
     <>

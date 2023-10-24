@@ -1,43 +1,45 @@
 import React, { useContext, useEffect, useState } from "react";
-import { QuizContext } from "../context/quiz.jsx";
-
+import questionService from "../services/QuestionService.js";
 import Option from "../components/Option.jsx";
 import GameOver from "../components/GameOver.jsx";
-
 import Img from "../img/explam-image.png";
 import "../assets/question.css";
 
 const QuizNox = () => {
-  const [quizState, dispatch] = useContext(QuizContext);
-  const currentQuestion = quizState.questions[quizState.currentQuestion];
-  const [gameOver, setGameOver] = useState(false);
-
-  const onSelectOption = (option, selectedIndex) => {
-    dispatch({
-      type: "CHECK_ANSWER",
-      payload: { answer: currentQuestion.answer, option },
-    });
-  };
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   useEffect(() => {
-    dispatch({ type: "REORDER_QUESTIONS" });
-    dispatch({ type: "START_GAME" });
+    const fetchQuestions = async () => {
+      try {
+        const questionsData = await questionService.listarQuestoes();
+        setQuestions(questionsData);
+      } catch (error) {
+        console.error('Erro ao buscar as perguntas: ' + error.message);
+      }
+    };
+
+    fetchQuestions();
   }, []);
 
-  useEffect(() => {
-    if (quizState.gameStage === "End") {
-      setGameOver(true);
+  const changeComponent = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      // Renderiza o componente GameOver quando não houver mais perguntas
+      return <GameOver />;
     }
-  }, [quizState.gameStage]);
+  };
+
+  // Obtém a pergunta atual
+  const currentQuestion = questions[currentQuestionIndex];
 
   return (
     <div id="question">
-      {gameOver ? (
-        <GameOver />
-      ) : currentQuestion && (
+      {currentQuestion ? (
         <>
           <p>
-            Pergunta {quizState.currentQuestion + 1} de {quizState.questions.length}
+            Pergunta {currentQuestionIndex + 1} de {questions.length}
           </p>
           <h2>{currentQuestion.question}</h2>
           <div id="options-container">
@@ -50,33 +52,15 @@ const QuizNox = () => {
               />
             ))}
           </div>
-          {!quizState.answerSelected && !quizState.help && (
-            <>
-              {currentQuestion.tip && (
-                <button onClick={() => dispatch({ type: "SHOW_TIP" })}>Dica</button>
-              )}
-              <button
-                className="button"
-                onClick={() => dispatch({ type: "REMOVE_OPTION" })}
-              >
-                Excluir uma
-              </button>
-            </>
-          )}
-          {!quizState.answerSelected && quizState.help === "tip" && (
-            <p>{currentQuestion.tip}</p>
-          )}
-          {quizState.answerSelected && (
-            <button
-              className="button"
-              onClick={() => dispatch({ type: "CHANGE_QUESTION" })}
-            >
-              Continuar
-            </button>
-          )}
+          {/* Resto do seu código para renderização de opções, dica, etc. */}
+          <button className="button" onClick={changeComponent}>
+            Continuar
+          </button>
         </>
+      ) : (
+        <GameOver />
       )}
-      {!gameOver && (
+      {!GameOver && (
         <img
           src={Img}
           alt="Explicação das respostas"

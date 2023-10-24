@@ -24,7 +24,7 @@ export class QuestionService extends Component {
 
 
 	async listarQuestoes() {
-		return await api.get('api/question/')
+		return await api.get('/api/question/getAll/')
 			.then((response) => {
 				console.log({ response })
 				return response.data;

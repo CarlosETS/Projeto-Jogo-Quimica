@@ -1,28 +1,25 @@
 import React, { useContext, useState } from "react";
-import { QuizContext } from "../context/quiz.jsx";
+
 import "../assets/option.css";
 
 import CorrectImg from "../img/correct-image.png";
 import WrongImg from "../img/wrong-image.png";
 import CorrectAnswerImg from "../img/correct-answer-image.png";
 
-const Option = ({ option, selectOption, index }) => {
+const Option = ({ option, index }) => {
   const [quizState, dispatch] = useContext(QuizContext);
   const [clicked, setClicked] = useState(false);
 
-  const correctIndex = quizState.correctIndex;
-  const answer = quizState.questions[quizState.currentQuestion].answer; // Obtém a resposta correta da pergunta atual
-
+  const currentQuestionIndex = quizState.currentQuestion;
+  const answer = quizState.questions[currentQuestionIndex].answer;
   const isCorrect = quizState.answerSelected && option === answer;
-  const isWrong = quizState.answerSelected && option !== answer;
-  const isWrongOnClick = clicked && index !== correctIndex;
-  const isCorrectOnClick = clicked && index === correctIndex;
+  const isWrongOnClick = clicked && index !== answer;
+  const isCorrectOnClick = clicked && index === answer;
 
   const handleOptionClick = () => {
     if (!clicked) {
       setClicked(true);
-      selectOption(index);
-      dispatch({ type: "CHECK_ANSWER", payload: { answer, option } }); // Atualiza o estado com a resposta selecionada
+      dispatch({ type: "SELECT_OPTION", payload: { selectedOption: option } });
     }
   };
 
@@ -30,12 +27,11 @@ const Option = ({ option, selectOption, index }) => {
     <div
       onClick={handleOptionClick}
       className={`
-                option
-                ${isCorrect ? "correct" : ""}
-                ${isWrong ? "wrong" : ""}
-                ${isWrongOnClick ? "wrong-clicked" : ""}
-                ${isCorrectOnClick ? "correct" : ""}
-            `}
+        option
+        ${isCorrect ? "correct" : ""}
+        ${isWrongOnClick ? "wrong-clicked" : ""}
+        ${isCorrectOnClick ? "correct-clicked" : ""}
+      `}
     >
       <p>{option}</p>
       {isCorrect && <img src={CorrectAnswerImg} alt="Resposta certa" className="image-mark" />}
