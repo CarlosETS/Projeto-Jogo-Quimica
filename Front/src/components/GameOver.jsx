@@ -1,14 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Importe Link para navegar para outras páginas
+import { Link } from "react-router-dom";
 import "../assets/gameover.css";
 
-const GameOver = ({ score, totalQuestions }) => {
+const GameOver = ({ score, totalQuestions, totalCorrectQuestions }) => {
   return (
-    <div id="gameover">
+    <div  className="gameover">
       <h2>Fim de Jogo</h2>
       <p className="score">Pontuação: {score}</p>
       <p>
-        Você acertou {score} de {totalQuestions} perguntas.
+        Você acertou {totalCorrectQuestions} de {totalQuestions} perguntas.
       </p>
       <img src="" alt="Fim do Quiz" className="gameover-image" />
       <div className="button-container">

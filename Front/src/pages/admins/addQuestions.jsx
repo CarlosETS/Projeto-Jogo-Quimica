@@ -46,9 +46,10 @@ const AddQuestions = () => {
 
   const handleAddResponse = () => {
     setResponseCount(responseCount + 1);
+    const newResponse = { text: '', isCorrect: responseCount === 0 };
     formik.setValues({
       ...formik.values,
-      responses: [...formik.values.responses, { text: '', isCorrect: false }],
+      responses: [...formik.values.responses, newResponse],
     });
   };
 

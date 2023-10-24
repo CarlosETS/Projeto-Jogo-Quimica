@@ -15,6 +15,7 @@ export class QuestionService extends Component {
 		.then((response) => {
 				// messageService.successMessage('Questão cadastrada com sucesso')
 				console.log("DEU TD CERTO, CADASTREI")
+				return response
 			})
 			.catch((err) => {
 				// messageService.errorMessage('Erro ao cadastrar Questão')
