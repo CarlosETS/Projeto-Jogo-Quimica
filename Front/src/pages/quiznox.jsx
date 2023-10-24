@@ -5,9 +5,9 @@ import GameOver from "../components/GameOver.jsx";
 import Img from "../img/explam-image.png";
 import "../assets/question.css";
 
-const QuizNox = () => {
+const QuizNox = ({ select }) => {
   const [questions, setQuestions] = useState([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentDataIndex, setDataQuestionIndex] = useState(0);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -23,32 +23,54 @@ const QuizNox = () => {
   }, []);
 
   const changeComponent = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    if (currentDataIndex < questions.length - 1) {
+      setDataQuestionIndex(currentDataIndex + 1);
     } else {
       // Renderiza o componente GameOver quando não houver mais perguntas
       return <GameOver />;
     }
   };
 
-  // Obtém a pergunta atual
-  const currentQuestion = questions[currentQuestionIndex];
+  console.log(questions);
+
+  // Verifique se a variável `questions` não está vazia
+  if (questions.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(currentDataIndex)
+  const currentQuestion = questions.data[currentDataIndex];
+  console.log(currentQuestion)
+
+  // Crie um array de perguntas com suas respostas associadas
+  const questionWithAnswer = currentQuestion.answers.map((answer) => ({
+    question: currentQuestion.question.text, // Texto da pergunta
+    answer: answer.description, // Texto da resposta
+  }));
+
+  console.log(questionWithAnswer);
+
+  const onSelectOption = () => {
+    currentQuestion.answer;
+  };
+
+  console.log(currentQuestion.answer)
 
   return (
     <div id="question">
       {currentQuestion ? (
         <>
           <p>
-            Pergunta {currentQuestionIndex + 1} de {questions.length}
+            Pergunta {currentQuestion + 1} de {questions.length}
           </p>
-          <h2>{currentQuestion.question}</h2>
+          <h2>{currentQuestion.question.text}</h2>
           <div id="options-container">
-            {currentQuestion.options.map((option, index) => (
+            {currentQuestion.answers.map((answer) => (
               <Option
-                option={option}
-                key={option}
-                selectOption={onSelectOption}
-                index={index}
+                option={answer.description}
+                key={answer._id}
+                onSelectOption={onSelectOption} // Passa a função onSelectOption aqui
+                isCorrectAnswer={answer.isCorrect} // Passa a prop isCorrectAnswer
               />
             ))}
           </div>

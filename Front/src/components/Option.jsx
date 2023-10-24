@@ -1,42 +1,43 @@
-import React, { useContext, useState } from "react";
-
-import "../assets/option.css";
+import React, { useState } from "react";
 
 import CorrectImg from "../img/correct-image.png";
 import WrongImg from "../img/wrong-image.png";
 import CorrectAnswerImg from "../img/correct-answer-image.png";
 
-const Option = ({ option, index }) => {
-  const [quizState, dispatch] = useContext(QuizContext);
+import "../assets/option.css";
+
+const Option = ({ option, iscorrect, onSelectOption, selectedAnswer }) => {
   const [clicked, setClicked] = useState(false);
 
-  const currentQuestionIndex = quizState.currentQuestion;
-  const answer = quizState.questions[currentQuestionIndex].answer;
-  const isCorrect = quizState.answerSelected && option === answer;
-  const isWrongOnClick = clicked && index !== answer;
-  const isCorrectOnClick = clicked && index === answer;
+  const isSelected = selectedAnswer === option;
+  const isIncorrectOption = !isSelected;
 
-  const handleOptionClick = () => {
+  const isCorrect = iscorrect === true;
+  const isWrong = !isCorrect && isIncorrectOption;
+
+  const handleClick = () => {
     if (!clicked) {
       setClicked(true);
-      dispatch({ type: "SELECT_OPTION", payload: { selectedOption: option } });
+      onSelectOption(option);
     }
   };
 
+
   return (
     <div
-      onClick={handleOptionClick}
+      onClick={handleClick}
       className={`
         option
         ${isCorrect ? "correct" : ""}
-        ${isWrongOnClick ? "wrong-clicked" : ""}
-        ${isCorrectOnClick ? "correct-clicked" : ""}
+        ${isIncorrectOption ? "wrong" : ""}
+        ${clicked && isWrong ? "wrong-clicked" : ""}
+        ${clicked && isSelected ? "correct-clicked" : ""}
       `}
     >
       <p>{option}</p>
       {isCorrect && <img src={CorrectAnswerImg} alt="Resposta certa" className="image-mark" />}
-      {isWrongOnClick && <img src={WrongImg} alt="Você errou" className="image-mark" />}
-      {isCorrectOnClick && <img src={CorrectImg} alt="Resposta correta" className="image-mark" />}
+      {isWrong && (clicked && isSelected) && <img src={WrongImg} alt="Você errou" className="image-mark" />}
+      {isCorrect && clicked && isSelected && <img src={CorrectImg} alt="Resposta correta" className="image-mark" />}
     </div>
   );
 };
