@@ -7,3 +7,13 @@
   margin: 0;
   font-family: sans-serif;
 }
+
+body,html{
+  min-height: 100vh;
+  height: 100%;
+  background: linear-gradient(#000000, #332E33);
+}
+
+img{
+  max-width: 100;
+}

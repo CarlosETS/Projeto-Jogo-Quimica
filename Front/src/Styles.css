@@ -1,8 +1,9 @@
 .container{
     height: 100vh;
-    display: flex;
-    justify-content: center;
+    display: flex;  
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(#000000, #332E33);
+    text-align: center;
+    margin-left: calc(4rem);
+    color: rgb(162, 105, 216);
 }
