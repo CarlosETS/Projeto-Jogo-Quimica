@@ -15,7 +15,7 @@ class QuestionService {
 
       if (responses && responses.length > 0) {
         const responseObjects = responses.map((response: any) => ({
-          description: response.text,
+          description: response.description,
           isCorrectAnswer: response.isCorrectAnswer,
           question: questionData._id,
         }));
@@ -23,9 +23,10 @@ class QuestionService {
         const savedResponses = await Answers.create(responseObjects);
 
         if (!savedResponses) throw new Error("Falha ao salvar as respostas");
+        return { message: 'Pergunta e respostas criadas com sucesso', data: savedResponses};
       }
 
-      return { message: 'Pergunta e respostas criadas com sucesso' };
+      return { message: 'Aconteceu algum erro ao cadastrar a pergunta'};
     } catch (error: any) {
       return { error: error.message };
     }
