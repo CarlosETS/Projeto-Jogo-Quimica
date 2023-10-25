@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import questoesService from '../../services/QuestionService';
 
 
-const AddQuestions = () => {
+const AddNoxQuestions = () => {
   const validationSchema = Yup.object().shape({
     question: Yup.string().required('A pergunta é obrigatória'),
     responses: Yup.array()
@@ -177,4 +177,4 @@ const AddQuestions = () => {
   
 };
 
-export default AddQuestions;
+export default AddNoxQuestions;
