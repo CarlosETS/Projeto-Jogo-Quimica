@@ -8,6 +8,7 @@ import "../assets/question.css";
 const QuizNox = () => {
   const [questions, setQuestions] = useState([]);
   const [currentDataIndex, setDataQuestionIndex] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState([]);
   const [points, setPoints] = useState(0);
   const [totalcorrect, setTotalCorrect] = useState(0);
   const [correctIndex, setCorrectIndex] = useState(); // Adicione o estado para rastrear o índice da resposta correta
@@ -25,28 +26,19 @@ const QuizNox = () => {
     fetchQuestions();
   }, []);
 
-  console.log(questions);
+  useEffect(() => {
+    setCurrentQuestion(questions[currentDataIndex])
+  }, [questions, currentDataIndex]);
+  
 
-  // Verifique se a variável `questions` não está vazia
   if (questions.length === 0) {
     return <div>Loading...</div>;
   }
+  const answersArray = questions.map((questionAnswers) => questionAnswers.answers);
 
-  console.log(currentDataIndex)
-  const currentQuestion = questions.data[currentDataIndex];
-  console.log(currentQuestion)
-
-  const answersArray = currentQuestion.answers.map((answer, index) => ({
-    description: answer.description,
-    isCorrectAnswer: answer.isCorrectAnswer,
-    index: answer.isCorrectAnswer ? index : -1 // Define o índice da resposta correta ou -1 se não for correta
-  }));
-
-  console.log('aaaa', answersArray);
-
-  const changeComponent = () => {
-    if (currentDataIndex < questions.data.length) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+  const handleAddCountQuestion = () => {
+    if (currentDataIndex < questions.length) {
+      setDataQuestionIndex(currentDataIndex + 1);
       setSelectedOptionIndex(null);
     } else {
       // Renderiza o componente GameOver quando não houver mais perguntas
@@ -54,47 +46,49 @@ const QuizNox = () => {
     }
   };
 
-  const handleSelectOption = (isCorrect, answerIndex) => {
+  const handleSelectOption = (isCorrect) => {
     if (isCorrect) {
       setPoints(points + 10);
       setTotalCorrect(totalcorrect + 1);
-      setCorrectIndex(answerIndex); // Define o índice da resposta correta
+      setCorrectIndex(answerIndex);
     }
   };
-
+  // currentQuestion = questions[currentDataIndex];
   return (
     <div className="question">
-      {currentQuestion ? (
+      {console.log(questions.length)}
+      {console.log(currentQuestion)}
+      {questions.length > 0 && currentQuestion ? (
         <>
           <p>
-            Pergunta {currentDataIndex + 1} de {questions.data.length}
+            Pergunta {currentDataIndex + 1} de {questions.length}
           </p>
-          <h2>{currentQuestion.question.text}</h2>
+          <h2>{currentQuestion.text}</h2>
           <div id="options-container">
             {currentQuestion.answers.map((answer, index) => (
               <Option
                 option={answer.description}
                 key={answer._id}
-                selectOption={(index) => handleSelectOption(answer.isCorrect, index)}
-                index={index}
-                correctIndex={answersArray.findIndex((answer) => answer.isCorrectAnswer == true)}
+                // selectOption={handleSelectOption(answer.isCorrect)}
+                // index={index}
+                // correctIndex={answersArray.findIndex((answer) => answer.isCorrectAnswer == true)}
               />
             ))}
           </div>
           {/* Resto do seu código para renderização de opções, dica, etc. */}
-          <button className="button" onClick={changeComponent}>
+          <button className="button" onClick={handleAddCountQuestion}>
             Continuar
           </button>
         </>
       ) : (
         <GameOver
           score={points}
-          totalQuestions={questions.data.length}
+          totalQuestions={questions.length}
           totalCorrectQuestions={totalcorrect}
           correctIndex={correctIndex} // Passa o índice da resposta correta para o componente GameOver
         />
       )}
-      {currentDataIndex < questions.data.length && (
+      {currentDataIndex < questions.length && (
         <img
           src={Img}
           alt="Explicação das respostas"

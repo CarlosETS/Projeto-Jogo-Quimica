@@ -27,8 +27,8 @@ export class QuestionService extends Component {
 	async listarQuestoes() {
 		return await api.get('/api/question/getAll/')
 			.then((response) => {
-				console.log({ response })
-				return response.data;
+				console.log({"responseData": response.data.data})
+				return response.data.data;
 			})
 			.catch((err) => {
 				console.log("Ops! ocorreu um erro" + err);
