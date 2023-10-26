@@ -8,6 +8,8 @@ import Ranking from './pages/ranking.jsx';
 import AddQuestions from './pages/admins/addQuestions.jsx';
 import Login from './pages/Login.jsx';
 
+import QuizNox from './pages/quiznox.jsx';
+
 // const Componente = lazy(() => import('./pages/Auth/Login'))
 
 export default function AppRoutes() {
@@ -23,6 +25,7 @@ export default function AppRoutes() {
             <Route path="/chemistrygame" element={<ChemistryGame />} />
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/addquestions" element={<AddQuestions />} />
+            <Route path='/quiznox' element={<QuizNox/>}/>
           </Routes>
         </Router>
       </Suspense >

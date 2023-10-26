@@ -17,7 +17,15 @@ export default {
           500: '#38a169',
         },
       },
-    },
+      current: 'currentColor',
+      'bluegreen': {
+        800: '#79A3A0',
+        600: '#33C4B8',
+        500: '#65DBD1',
+        400: '#91DBD5',
+        300: '#A2DBD7'
+      }
+    }
   },
   plugins: [],
 }

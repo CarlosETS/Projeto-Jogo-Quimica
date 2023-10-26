@@ -1,0 +1,79 @@
+.option {
+  background-color: #ffffff; /* Cor de contraste: Vermelho */
+  color: #000000; /* Texto em branco para contraste */
+  border-radius: 0.5rem;
+  /*border: 2px solid #261833;*/
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.4s;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.option:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+#options-container .option p {
+  margin-bottom: 0;
+}
+
+/* Adicione essas classes no seu arquivo de estilos CSS */
+.correct {
+  background-color: lightgreen !important;
+  /* Fundo verde para resposta correta */
+  pointer-events: none;
+  /* Desativa eventos de clique nas respostas corretas */
+}
+
+.wrong {
+  background-color: lightcoral;
+  /* Fundo vermelho para respostas erradas */
+  pointer-events: none;
+  /* Desativa eventos de clique nas respostas erradas */
+  opacity: 0.7;
+}
+
+.wrong-clicked {
+  background-color: red;
+  /* Fundo vermelho para respostas erradas */
+  pointer-events: none;
+  /* Desativa eventos de clique nas respostas erradas */
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.image-mark {
+  position: absolute;
+  bottom: -5px;
+  right: 0px;
+  width: 70px;
+  /* Defina o tamanho desejado */
+  height: auto;
+}
+
+.image-mark {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.hide {
+  display: none;
+}
