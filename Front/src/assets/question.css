@@ -7,26 +7,34 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
-.p {
-  margin-top: 0;
-  margin-bottom: 1rem;
+/* Melhorias no estilo para destacar perguntas */
+.question h2 {
+  margin: 0; /* Remova a margem superior e inferior padrão */
+  font-size: 1.6rem; /* Aumente o tamanho da fonte para destacar a pergunta */
   font-weight: bold;
+  color: #fff; /* Texto em branco para contraste */
+}
+
+.question p {
   font-size: 1.2rem;
+  margin-top: 1rem; /* Adicione um espaçamento superior para separar a pergunta do conteúdo */
+  color: #000000; /* Texto em branco para contraste */
 }
 
-.h2 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-weight: bold;
-  font-size: 1.4rem;
-  padding-bottom: 5px;
+/* Ajuste o estilo do botão */
+.button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 1rem 0; /* Adicione margem na parte superior e inferior para separar os botões */
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.bottom-left-image {
-  position: absolute;
-  bottom: 0;
-  left: 60px;
-  width: 300px;
-  height: auto;
+.button:hover {
+  background-color: #45a049;
 }

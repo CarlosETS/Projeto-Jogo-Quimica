@@ -11,11 +11,9 @@ class QuestionController {
     }
   }
 
-  //Controler só para criar multiplas questões
   async createMany(req: Request, res: Response) {
     try {
-      console.log("aiaiai")
-      const data = req.body.data; // Acessando a chave "data" do JSON
+      const data = req.body.data;
 
       if (!data || !Array.isArray(data) || data.length === 0) {
         return res.status(400).json({ error: 'Dados de entrada inválidos' });
@@ -28,7 +26,6 @@ class QuestionController {
   
       res.status(200).json({ msg: 'Perguntas cadastradas com sucesso' });
     } catch (error) {
-      console.log("aiaiia2", error)
       res.status(400).json({ error });
     }
   }
