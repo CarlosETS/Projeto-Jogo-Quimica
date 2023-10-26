@@ -4,7 +4,7 @@ import { CircularProgress } from '@mui/material';
 //Routes
 import Home from './pages/home.jsx'
 import Ranking from './pages/ranking.jsx';
-import AddQuestions from './pages/admins/addQuestions.jsx';
+import AddQuestions from './pages/addquestion.jsx';
 import Dissociation from './pages/dissociation.jsx';
 import Login from './pages/Login.jsx';
 
