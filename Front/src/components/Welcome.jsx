@@ -58,7 +58,7 @@ const Welcome = () => {
             onClick={() => createModal(
               'Dissociação',
               'Dissociação eletrolítica, em química, é o processo em que compostos iônicos têm seus íons separados. Estes íons podem voltar a recombinar-se para dar origem ao composto original. Esse processo ocorre apenas com compostos que apresentem ligações iônicas.',
-              '/disociation'
+              '/dissociation'
             )}
             className="button cursor-pointer text-black bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2"
           >

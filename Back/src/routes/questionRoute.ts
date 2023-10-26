@@ -7,5 +7,6 @@ router.post('/disable/:id/', questionController.disable);
 router.put('/update/:id/', questionController.update);
 router.get('/getOne/:id/', questionController.getOneQuestion);
 router.get('/getAll/', questionController.getAllQuestions);
+router.post('/createMany/', questionController.createMany);
 
 export default router;
