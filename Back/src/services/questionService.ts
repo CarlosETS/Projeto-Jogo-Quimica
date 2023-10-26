@@ -1,7 +1,7 @@
 import Questions from '../data/questions';
 import Answers from '../data/answers';
 import IQuestion from '@interfaces/IQuestions';
-import IAnswer from '@interfaces/IAnswers';
+import IAnswers from '@interfaces/IAnswers';
 
 
 class QuestionService {
@@ -32,11 +32,44 @@ class QuestionService {
     }
   }
 
+  static async createMany(questionData: any, answersData: any) {
+    try {
+      const { text, isActive } = questionData;
+      const responses = answersData || [];
+
+      if (!text || !Array.isArray(responses) || responses.length === 0) {
+        throw new Error("Dados de entrada inválidos");
+      }
+
+      const questionObject = await Questions.create({ text: text, isActive : isActive });
+      if (!questionObject) {
+        throw new Error("Falha ao criar a pergunta");
+      }
+
+      if (responses && responses.length > 0) {
+        const responseObjects = responses.map((response: { description: any; isCorrectAnswer: any; }) => ({
+          description: response.description,
+          isCorrectAnswer: response.isCorrectAnswer,
+          question: questionObject._id,
+        }));
+
+        const savedResponses = await Answers.create(responseObjects);
+
+        if (!savedResponses) {
+          throw new Error("Falha ao salvar as respostas");
+        }
+      }
+
+      return { message: 'Pergunta e respostas criadas com sucesso' };
+    } catch (error) {
+      throw error;
+    }
+  }
 
   static async update(questionId: string, body: IQuestion) {
     try {
       console.log(questionId)
-      const data = await Questions.findOneAndUpdate({_id: questionId}, body);
+      const data = await Questions.findOneAndUpdate({ _id: questionId }, body);
       return data;
     } catch (error) {
       return error;
@@ -48,8 +81,8 @@ class QuestionService {
       const {
         id
       } = body
-      const data = await Questions.updateOne({id}, {isActive: false});
-      console.log({data});
+      const data = await Questions.updateOne({ id }, { isActive: false });
+      console.log({ data });
       return data;
     } catch (error) {
       return error;
@@ -61,16 +94,16 @@ class QuestionService {
       // const {
       //   id
       // } = body
-      console.log({questionId});
-      const question = await Questions.findOne({_id: questionId});
-      console.log({question});
-      const answer = await Answers.find({question: question?._id});
-      console.log({answer});
+      console.log({ questionId });
+      const question = await Questions.findOne({ _id: questionId });
+      console.log({ question });
+      const answer = await Answers.find({ question: question?._id });
+      console.log({ answer });
       const data = {
         question,
         answer
       }
-      console.log({data});
+      console.log({ data });
       return data;
     } catch (error) {
       return error;

@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 //Routes
 import Home from './pages/home.jsx'
-import ChemistryGame from './pages/chemistrygame.jsx'
 import Ranking from './pages/ranking.jsx';
-import AddQuestions from './pages/admins/addQuestions.jsx';
+import AddQuestions from './pages/addquestion.jsx';
+import Dissociation from './pages/dissociation.jsx';
 
 import QuizNox from './pages/quiznox.jsx';
 
@@ -19,7 +19,7 @@ export default function AppRoutes() {
         <Router>
           <Routes>
             <Route path="/home" element={<Home />} />
-            <Route path="/chemistrygame" element={<ChemistryGame />} />
+            <Route path="/dissociation" element={<Dissociation />} />
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/addquestions" element={<AddQuestions />} />
             <Route path='/quiznox' element={<QuizNox/>}/>

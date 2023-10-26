@@ -58,7 +58,6 @@ const QuizNox = () => {
       setClassDefault('options option wrong disabled')
   };
 
-
   return (
     <div className="question">
       {questions.length > 0 && currentQuestion ? (
