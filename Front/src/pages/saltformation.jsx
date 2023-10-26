@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import '../assets/saltformation.css';
-import reactionsData from '../data/ReactionData';
+import { reactionsData, questions } from '../data/ReactionData.jsx';
+import '../assets/saltformation.css'; // Importe os estilos CSS
 
 function SaltFormation() {
   const [items, setItems] = useState([]);
@@ -11,10 +11,12 @@ function SaltFormation() {
   const [showButton, setShowButton] = useState(false);
   const [currentSet, setCurrentSet] = useState(1);
   const [orderChecked, setOrderChecked] = useState(false);
+  const [score, setScore] = useState(0);
+  const [isCorrectOrder, setIsCorrectOrder] = useState(false);
 
   useEffect(() => {
     shuffleItems();
-  }, []);
+  }, [currentSet]);
 
   const handleContinue = () => {
     setResetColors(true);
@@ -31,98 +33,110 @@ function SaltFormation() {
     setCorrectOrder(initialItems.map((item) => item.content));
     setResetColors(false);
     setShowButton(false);
-    setOrderChecked(false); // Reset the orderChecked state
+    setOrderChecked(false);
+
+    const question = questions[`set${randomSet}`];
+    console.log('Pergunta:', question);
+
+    // Atualize o conteúdo da pergunta na interface
+    document.getElementById('questionDiv').innerText = question;
   };
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
-
+  
     const reorderedItems = Array.from(items);
     const [movedItem] = reorderedItems.splice(result.source.index, 1);
     reorderedItems.splice(result.destination.index, 0, movedItem);
-
+  
     setItems(reorderedItems);
+  
+    // Calcule a nova altura do container com base na posição do bloco
+    const newHeight = draggableBlock.offsetTop + draggableBlock.clientHeight;
+  
+    // Defina a altura do container para a nova altura
+    container.style.height = newHeight + 'px';
   };
+  
   const checkOrder = () => {
     const currentOrder = items.map((item) => item.content);
     const isCorrect = JSON.stringify(currentOrder) === JSON.stringify(correctOrder);
-
+  
     const itemColors = currentOrder.map((item, index) => {
       if (correctOrder[index] === item) {
         return 'green';
       }
       return 'red';
     });
-
+  
     setItemColors(itemColors);
     setOrderChecked(true);
-
+  
     if (isCorrect) {
-      setShowButton(true);
+      setScore(score + 10); // Adicione pontos quando a ordem estiver correta
+      setIsCorrectOrder(true);
     } else {
       setTimeout(() => {
         setItemColors([]);
         setShowButton(true);
       }, 2000);
     }
-  };
+  };  
 
   const renderReactions = () => {
     return (
-      <div className="reactions">
+      <ol className="listContainer">
         {items.map((item, index) => (
-          <div
-            key={item.id}
-            className={`reaction-item ${resetColors ? '' : itemColors[index]}`}
-          >
-            {item.content}
-          </div>
+          <Draggable key={item.id} draggableId={item.id} index={index}>
+            {(provided) => (
+              <div
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                className={`item ${resetColors ? '' : itemColors[index]}`}
+              >
+                {item.content}
+              </div>
+            )}
+          </Draggable>
         ))}
-      </div>
+      </ol>
     );
   };
+  
 
   return (
     <div className="saltFormation">
-      <h1>Arraste e Solte (Drag and Drop) e Verificação de Ordem</h1>
+      <div className="score">Score: {score}</div>
+      <div id="questionDiv" className="questionDiv">
+        Conteúdo da Pergunta
+      </div>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="list" direction="horizontal">
+        <Droppable droppableId="list" direction="none">
           {(provided) => (
-            <ul
+            <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="list-container"
             >
-              {items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided) => (
-                    <li
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      className={`item ${resetColors ? '' : itemColors[index]}`}
-                    >
-                      {item.content}
-                    </li>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </ul>
+              {renderReactions()}
+            </div>
           )}
         </Droppable>
       </DragDropContext>
       <div className="buttons">
         <button
           onClick={checkOrder}
-          className={`check-order-button ${orderChecked ? 'disabled-button' : ''}`}
+          className="checkOrderButton"
           disabled={orderChecked}
         >
           Verificar Ordem
         </button>
 
         {showButton && (
-          <button onClick={handleContinue} className="button">
+          <button
+            onClick={handleContinue}
+            className="continueButton"
+          >
             Continuar
           </button>
         )}

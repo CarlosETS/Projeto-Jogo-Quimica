@@ -4,7 +4,7 @@ import { CircularProgress } from '@mui/material';
 //Routes
 import Home from './pages/home.jsx'
 import Ranking from './pages/ranking.jsx';
-import AddQuestions from './pages/addquetion.jsx';
+import AddQuestions from './pages/addquestion.jsx';
 import SaltFormation from './pages/saltformation.jsx';
 
 // const Componente = lazy(() => import('./pages/Auth/Login'))
