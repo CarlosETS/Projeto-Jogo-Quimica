@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { reactionsData, questions } from '../data/ReactionData.jsx';
-import '../assets/saltformation.css'; // Importe os estilos CSS
+import '../assets/dissociation.css'; // Importe os estilos CSS
 
-function SaltFormation() {
+function Dissociation() {
   const [items, setItems] = useState([]);
   const [correctOrder, setCorrectOrder] = useState([]);
   const [itemColors, setItemColors] = useState([]);
@@ -145,4 +145,4 @@ function SaltFormation() {
   );
 }
 
-export default SaltFormation;
+export default Dissociation;

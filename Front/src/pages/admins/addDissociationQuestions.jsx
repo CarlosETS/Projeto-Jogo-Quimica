@@ -4,9 +4,9 @@ import { useFormik } from 'formik';
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import saltFormationService from '../../services/SaltFormationService';
+import saltFormationService from '../../services/DissociationService';
 
-const AddSaltFormationQuestion = () => {
+const AddDissociationQuestion = () => {
   const validationSchema = Yup.object().shape({
     question: Yup.string().required('A pergunta é obrigatória'),
     responses: Yup.array()
@@ -90,17 +90,17 @@ const AddSaltFormationQuestion = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-md p-6 w-96">
+    <div className="flex items-center justify-center">
+      <div className="p-4 bg-white rounded-md shadow-md w-full sm:w-96 md:w-96 lg:w-96 mt-8">
         {formik.touched.responses && formik.errors.responses && (
           <div className="text-red-600 font-bold text-lg mb-2">
             {formik.errors.responses}
           </div>
         )}
         {formik.touched.question && formik.errors.question && (
-          <div className="text-red-600">{formik.errors.question}</div>
+          <div className="text-red-600 mb-2">{formik.errors.question}</div>
         )}
-        <h2 className="text-2xl font-semibold mb-4">Criar Formação de Sal</h2>
+        <h2 className="text-2xl font-semibold mb-4">Dissociação</h2>
         <form onSubmit={formik.handleSubmit}>
           <textarea
             type="text"
@@ -155,9 +155,9 @@ const AddSaltFormationQuestion = () => {
           )}
           <button
             type='submit'
-            className='focus:outline-none text-white bg-green-700 hover-bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark-hover-bg-green-700 dark-focus-ring-green-800'
+            className='focus:outline-none text-white bg-green-700 hover-bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark-bg-green-600 dark-hover-bg-green-700 dark-focus-ring-green-800'
           >
-            Salvar Formação de Sal
+            Salvar Dissociação
           </button>
           <a
             href='/home'
@@ -172,4 +172,4 @@ const AddSaltFormationQuestion = () => {
   );
 };
 
-export default AddSaltFormationQuestion;
+export default AddDissociationQuestion;
