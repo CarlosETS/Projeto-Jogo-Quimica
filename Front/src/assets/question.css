@@ -1,0 +1,32 @@
+.question {
+  background-color: #27b7bf;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 100%;
+  width: 55%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding-bottom: 5px;
+}
+
+.bottom-left-image {
+  position: absolute;
+  bottom: 0;
+  left: 60px;
+  width: 300px;
+  height: auto;
+}

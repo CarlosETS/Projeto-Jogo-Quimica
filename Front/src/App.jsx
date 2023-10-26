@@ -1,4 +1,5 @@
 import './Styles.css'
+
 import SideBar from './components/SideBar'
 import AppRoutes from './routes'
 
@@ -12,7 +13,6 @@ function App() {
       <div className='container'>
         <AppRoutes />
       </div>
-
     </div>
   )
 }

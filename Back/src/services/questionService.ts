@@ -15,7 +15,7 @@ class QuestionService {
 
       if (responses && responses.length > 0) {
         const responseObjects = responses.map((response: any) => ({
-          description: response.text,
+          description: response.description,
           isCorrectAnswer: response.isCorrectAnswer,
           question: questionData._id,
         }));
@@ -23,9 +23,10 @@ class QuestionService {
         const savedResponses = await Answers.create(responseObjects);
 
         if (!savedResponses) throw new Error("Falha ao salvar as respostas");
+        return { message: 'Pergunta e respostas criadas com sucesso', data: savedResponses};
       }
 
-      return { message: 'Pergunta e respostas criadas com sucesso' };
+      return { message: 'Aconteceu algum erro ao cadastrar a pergunta'};
     } catch (error: any) {
       return { error: error.message };
     }
@@ -78,9 +79,28 @@ class QuestionService {
 
   static async getAllQuestions() {
     try {
-      const data = await Questions.find({}).sort({updatedAt: -1});
-      console.log({data});
-      return data;
+      const questionsWithAnswers = await Answers.aggregate([
+        {
+          $lookup: {
+            from: "questions", // Use the actual name of the "Questions" collection
+            localField: "question",
+            foreignField: "_id",
+            as: "questionDetails"
+          }
+        },
+        {
+          $unwind: "$questionDetails"
+        },
+        {
+          $group: {
+            _id: "$questionDetails._id",
+            question: { $first: "$questionDetails" },
+            answers: { $push: "$$ROOT" }
+          }
+        }
+      ]);
+
+      return questionsWithAnswers;
     } catch (error) {
       return error;
     }
