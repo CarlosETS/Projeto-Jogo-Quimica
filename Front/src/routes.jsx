@@ -6,6 +6,7 @@ import Home from './pages/home.jsx'
 import Ranking from './pages/ranking.jsx';
 import AddQuestions from './pages/addquestion.jsx';
 import Dissociation from './pages/dissociation.jsx';
+import Login from './pages/Login.jsx';
 
 import QuizNox from './pages/quiznox.jsx';
 
@@ -18,6 +19,8 @@ export default function AppRoutes() {
       <Suspense fallback={<CircularProgress />}>
         <Router>
           <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/dissociation" element={<Dissociation />} />
             <Route path="/ranking" element={<Ranking />} />

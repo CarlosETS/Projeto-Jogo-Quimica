@@ -1,3 +1,4 @@
+import IQuestions from '@interfaces/IQuestions';
 import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({
@@ -7,5 +8,5 @@ const schema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-const Questions = mongoose.model('Questions', schema);
+const Questions = mongoose.model<IQuestions>('Questions', schema);
 export default Questions;

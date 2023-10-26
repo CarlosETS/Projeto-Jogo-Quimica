@@ -7,16 +7,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        current: 'currentColor',
-        'bluegreen': {
-          800: '#79A3A0',
-          600: '#33C4B8',
-          500: '#65DBD1',
-          400: '#91DBD5',
-          300: '#A2DBD7'
-        }
+        blue: {
+          500: '#3490dc',
+        },
+        purple: {
+          500: '#9561e2',
+        },
+        green: {
+          500: '#38a169',
+        },
+      },
+      current: 'currentColor',
+      'bluegreen': {
+        800: '#79A3A0',
+        600: '#33C4B8',
+        500: '#65DBD1',
+        400: '#91DBD5',
+        300: '#A2DBD7'
       }
-    },
+    }
   },
   plugins: [],
 }

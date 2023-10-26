@@ -1,7 +1,11 @@
+import * as dotenv from "dotenv"
+dotenv.config();
+
 import express from 'express';
 import mongoose from 'mongoose';
-import questionRoute from './routes/questionRoute';
 import cors from 'cors';
+import questionRoute from './routes/questionRoute';
+import userRoute from './routes/userRoute';
 
 // Config Inicial
 const app = express();
@@ -29,6 +33,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/question", questionRoute)
+app.use("/api/user", userRoute)
 
 const connectBD = async () => {
   try {

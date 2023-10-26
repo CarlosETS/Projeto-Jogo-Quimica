@@ -19,7 +19,7 @@ const SideBar = () => {
 
   return (
     <div className="sidebar">
-      <div className="min-h-screen h-screen w-16 flex-col justify-between border-e bg-gradient-to-b from-blue-300 via-blue-400 to-blue-500 bg-fixed">
+      <div className="min-h-screen h-screen w-16 flex-col justify-between bg-gradient-to-b from-blue-300 via-blue-400 to-blue-500 bg-fixed">
         <div>
           <div className="px-2">
             <ul className="space-y-1 pt-4">
