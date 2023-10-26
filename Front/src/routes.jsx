@@ -6,6 +6,7 @@ import Home from './pages/home.jsx'
 import ChemistryGame from './pages/chemistrygame.jsx'
 import Ranking from './pages/ranking.jsx';
 import AddQuestions from './pages/admins/addQuestions.jsx';
+import Login from './pages/Login.jsx';
 
 // const Componente = lazy(() => import('./pages/Auth/Login'))
 
@@ -16,6 +17,8 @@ export default function AppRoutes() {
       <Suspense fallback={<CircularProgress />}>
         <Router>
           <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/chemistrygame" element={<ChemistryGame />} />
             <Route path="/ranking" element={<Ranking />} />
