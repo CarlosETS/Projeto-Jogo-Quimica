@@ -5,7 +5,7 @@ import Title from '../img/title-image.png';
 
 const Home = () => {
   return (
-    <>
+    <div className="home-margin">
       <div className="home text-5xl font-bold">
         <img
           src={Title}
@@ -21,7 +21,7 @@ const Home = () => {
         />
       </div>
       <Welcome />
-    </>
+    </div>
   )
 }
 

@@ -24,7 +24,7 @@
 
 /* Adicione essas classes no seu arquivo de estilos CSS */
 .correct {
-  background-color: lightgreen;
+  background-color: lightgreen !important;
   /* Fundo verde para resposta correta */
   pointer-events: none;
   /* Desativa eventos de clique nas respostas corretas */
@@ -43,6 +43,10 @@
   /* Fundo vermelho para respostas erradas */
   pointer-events: none;
   /* Desativa eventos de clique nas respostas erradas */
+}
+
+.disabled {
+  pointer-events: none;
 }
 
 .image-mark {

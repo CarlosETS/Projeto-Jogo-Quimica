@@ -9,9 +9,10 @@ const QuizNox = () => {
   const [questions, setQuestions] = useState([]);
   const [currentDataIndex, setDataQuestionIndex] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState([]);
+  const [classDefault, setClassDefault] = useState('');
+  const [answerWrong, setAnswerWrong] = useState(false);
   const [points, setPoints] = useState(0);
-  const [totalcorrect, setTotalCorrect] = useState(0);
-  const [correctIndex, setCorrectIndex] = useState(); // Adicione o estado para rastrear o índice da resposta correta
+  const [rightQuestion, setRightQuestion] = useState(false);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -29,54 +30,56 @@ const QuizNox = () => {
   useEffect(() => {
     setCurrentQuestion(questions[currentDataIndex])
   }, [questions, currentDataIndex]);
-  
 
-  if (questions.length === 0) {
-    return <div>Loading...</div>;
+  const resetAllInputs = () => {
+    setClassDefault('');
+    setRightQuestion(false);
+    setAnswerWrong(false);
   }
-  const answersArray = questions.map((questionAnswers) => questionAnswers.answers);
 
-  const handleAddCountQuestion = () => {
+  const handleAddCountQuestion = (rightQuestion) => {
     if (currentDataIndex < questions.length) {
       setDataQuestionIndex(currentDataIndex + 1);
-      setSelectedOptionIndex(null);
+      if (rightQuestion)
+        setPoints(() => points + 1);
+
+      resetAllInputs();
     } else {
-      // Renderiza o componente GameOver quando não houver mais perguntas
       return <GameOver />;
     }
   };
 
-  const handleSelectOption = (isCorrect) => {
-    if (isCorrect) {
-      setPoints(points + 10);
-      setTotalCorrect(totalcorrect + 1);
-      setCorrectIndex(answerIndex);
-    }
+  const handleOptionClick = (isClicked, isCorrect) => {
+    if (!isCorrect) 
+      setAnswerWrong(true);
+    else
+      setRightQuestion(true);
+    if (isClicked)
+      setClassDefault('options option wrong disabled')
   };
-  // currentQuestion = questions[currentDataIndex];
+
+
   return (
     <div className="question">
-      {console.log(questions.length)}
-      {console.log(currentQuestion)}
       {questions.length > 0 && currentQuestion ? (
         <>
-          <p>
+          <p className="text-black">
             Pergunta {currentDataIndex + 1} de {questions.length}
           </p>
-          <h2>{currentQuestion.text}</h2>
+          <h2 className="text-black">{currentQuestion.question.text}</h2>
           <div id="options-container">
-            {currentQuestion.answers.map((answer, index) => (
+            {currentQuestion.answers.map((answer) => (
               <Option
-                option={answer.description}
+                description={answer.description}
                 key={answer._id}
-                // selectOption={handleSelectOption(answer.isCorrect)}
-                // index={index}
-                // correctIndex={answersArray.findIndex((answer) => answer.isCorrectAnswer == true)}
+                isCorrect={answer.isCorrectAnswer}
+                classDefault={classDefault}
+                handleCallback={(isClicked) => handleOptionClick(isClicked, answer.isCorrectAnswer)}
+                answerWrong={answerWrong}
               />
             ))}
           </div>
-          {/* Resto do seu código para renderização de opções, dica, etc. */}
-          <button className="button" onClick={handleAddCountQuestion}>
+          <button className="button" disabled={!classDefault} onClick={() => handleAddCountQuestion(rightQuestion)}>
             Continuar
           </button>
         </>
@@ -84,8 +87,6 @@ const QuizNox = () => {
         <GameOver
           score={points}
           totalQuestions={questions.length}
-          totalCorrectQuestions={totalcorrect}
-          correctIndex={correctIndex} // Passa o índice da resposta correta para o componente GameOver
         />
       )}
       {currentDataIndex < questions.length && (

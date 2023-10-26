@@ -4,68 +4,45 @@ import WrongImg from "../img/wrong-image.png";
 import CorrectAnswerImg from "../img/correct-answer-image.png";
 import "../assets/option.css";
 
-const Option = ({ option, selectOption, index }) => {
-  console.log({ option, selectOption, index })
+const Option = ({ description, isCorrect, handleCallback, classDefault, answerWrong}) => {
   const [clicked, setClicked] = useState(false);
-  const [optionStatus, setOptionStatus] = useState({});
-
-  const isCorrect = selectOption  ;
-  const isWrong = !isCorrect;
-  const isWrongOnClick = clicked && !isCorrect;
+  const [img, setImg] = useState();
+  const [options, setOptions] = useState(classDefault);
 
   useEffect(() => {
-    console.log({clicked})
-    console.log({isWrong})
-    chooseClass();
-    if (clicked && isWrong) {
-      setOptionStatus({ ...optionStatus});
-    }
-  }, [clicked, isWrong, index]);
+    chooseClass(isCorrect, clicked);
+  }, [clicked, classDefault]);
 
   const handleClick = () => {
     if (!clicked) {
-      console.log(isCorrect)
       setClicked(true);
-      selectOption(index);
+      chooseClass(isCorrect, true);
+      handleCallback(true);
     }
   };
 
-  const optionClasses = ["option"];
-  const chooseClass = () => {
-    switch (optionClasses) {
-      case isCorrect && clicked:
-        optionClasses.push("correct-clicked");
-        break;
-      case isCorrect:
-        optionClasses.push("correct");
-        break;
-      case optionStatus[index] === "wrong":
-        optionClasses.push("wrong");
-        break;
-    
-      default:
-        break;
+  const chooseClass = (isCorrect, isSelected = false) => {
+    if (isSelected && !isCorrect) {
+      setOptions("wrong-clicked disabled");
+      setImg(WrongImg);
+    } else if (isSelected && isCorrect) {
+      setOptions("correct disabled");
+      setImg(CorrectImg);
+    } else {
+      setOptions("wrong disabled");
+      setImg(WrongImg);
     }
   }
 
-  // if (isCorrect) {
-  // }
-  // if (isWrongOnClick) {
-  //   optionClasses.push("wrong-clicked");
-  // }
-  // if (isCorrect && clicked) {
-  //   optionClasses.push("correct-clicked");
-  // }
-  // if (optionStatus[index] === "wrong") {
-  //   optionClasses.push("wrong");
-  // }
-
   return (
-    <div name="AAA"   onClick={handleClick} className={`options ${optionClasses}`}>
-      <p>{option}</p>
-      {isCorrect && <img src={CorrectImg} alt="Você acertou" className="image-mark" />}
-      {isWrongOnClick && <img src={WrongImg} alt="Você errou" className="image-mark" />}
-      {isCorrect && clicked && <img src={CorrectAnswerImg} alt="Resposta correta" className="image-mark" />}
+    <div
+      name={description}
+      onClick={handleClick}
+      className={`options option ${clicked ? options : (!isCorrect) ? classDefault : answerWrong ? 'correct disabled' : ''}'`}
+    >
+      <p>{description}</p>
+      { clicked && <img src={img} className="image-mark" /> }
+      { isCorrect && answerWrong && <img src={CorrectAnswerImg} className="image-mark" /> }
     </div>
   );
 };

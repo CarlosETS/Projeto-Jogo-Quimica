@@ -2,23 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../assets/gameover.css";
 
-const GameOver = ({ score, totalQuestions, totalCorrectQuestions }) => {
+const GameOver = ({ score, totalQuestions }) => {
   return (
-    <div  className="gameover">
-      <h2>Fim de Jogo</h2>
-      <p className="score">Pontuação: {score}</p>
-      <p>
-        Você acertou {totalCorrectQuestions} de {totalQuestions} perguntas.
+    <div className="gameover">
+      <h2 className="text-white text-4xl mb-3"> Fim de Jogo</h2>
+      <p className="score text-2xl">Pontuação: {score}</p>
+      <p className="text-white mb-4">
+        Você acertou {score} de {totalQuestions} perguntas.
       </p>
-      <img src="" alt="Fim do Quiz" className="gameover-image" />
       <div className="button-container">
-        <Link to="/quiznox" className="restart-button">
+        <a onClick={() => window.location.reload()} className="restart-button">
           Reiniciar
-        </Link>
+        </a>
         <Link to="/home" className="home-button">
           Retornar à Tela Inicial
         </Link>
-      </div>
+      </div>  
     </div>
   );
 };

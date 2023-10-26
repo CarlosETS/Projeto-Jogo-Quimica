@@ -98,7 +98,7 @@ const AddQuestions = () => {
       {formik.touched.question && formik.errors.question && (
         <div className="text-red-600">{formik.errors.question}</div>
       )}
-      <h2 className="text-2xl font-semibold mb-4">Criar Questões</h2>
+      <h2 className="text-2xl text-black font-semibold mb-4">Criar Questões</h2>
       <form onSubmit={formik.handleSubmit}>
         <textarea
           type="text"
@@ -107,7 +107,7 @@ const AddQuestions = () => {
           value={formik.values.question}
           onChange={formik.handleChange}
           placeholder="Pergunta"
-          className="w-full p-2 block mb-2 border border-gray-300 rounded-lg"
+          className="w-full p-2 block text-black mb-2 border border-gray-300 rounded-lg"
         />
         {formik.values.responses.map((response, index) => (
           <div key={index} className="response-container flex items-center mb-2">
@@ -117,7 +117,7 @@ const AddQuestions = () => {
               value={response.text}
               onChange={(e) => handleResponseChange(index, e.target.value)}
               placeholder={`Resposta ${index + 1}`}
-              className="w-full p-2 border border-gray-300 rounded-lg"
+              className="w-full p-2 border text-black border-gray-300 rounded-lg"
             />
             <div className="button-with-icon">
               <input

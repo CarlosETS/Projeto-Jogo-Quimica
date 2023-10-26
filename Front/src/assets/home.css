@@ -2,26 +2,22 @@
     margin-bottom: 2rem;
 }
 
+.home-margin {
+    margin-bottom: 25%;
+}
+
 .bottom-left-image {
     position: absolute;
     bottom: 0;
     left: 60px;
-    /* Leva em consideração o padding horizontal da sidebar */
     width: 300px;
-    /* Largura da imagem */
     height: auto;
-    /* Altura ajustável para manter a proporção da imagem */
 }
 
 .title-image {
     width: 500px;
-    /* Ajuste a largura conforme necessário */
     height: auto;
-    /* A altura se ajustará automaticamente para manter a proporção */
     display: block;
-    /* Isso faz com que a imagem fique centralizada horizontalmente */
     margin: 0 auto;
-    /* Isso alinha a imagem ao centro horizontalmente */
     margin-top: 20px;
-    /* Adicione margem superior conforme necessário */
 }

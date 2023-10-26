@@ -1,43 +1,32 @@
 .question {
   background-color: #27b7bf;
   border-radius: 1rem;
-  padding: 1.5rem; /* Reduzindo um pouco o padding para economizar espaço */
-  max-width: 100%; /* Tornando o elemento responsivo à largura da tela */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajustando a sombra para uma aparência mais suave */
+  padding: 1.5rem;
+  max-width: 100%;
+  width: 55%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 
 .p {
-  margin-top: 0; /* Removendo a margem superior para colocá-lo mais perto do topo */
-  margin-bottom: 1rem; /* Adicionando uma pequena margem inferior */
-  font-weight: bold; /* Definindo o texto em negrito */
-  font-size: 1.2rem; /* Tornando o texto um pouco maior */
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .h2 {
-  margin-top: 0; /* Removendo a margem superior para colocá-lo mais perto do topo */
-  margin-bottom: 1rem; /* Adicionando uma pequena margem inferior */
-  font-weight: bold; /* Definindo o texto em negrito */
-  font-size: 1.4rem; /* Tornando o texto um pouco maior */
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.4rem;
   padding-bottom: 5px;
-}
-
-.button {
-  background-color: #8435de;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .bottom-left-image {
   position: absolute;
   bottom: 0;
   left: 60px;
-  /* Leva em consideração o padding horizontal da sidebar */
   width: 300px;
-  /* Largura da imagem */
   height: auto;
-  /* Altura ajustável para manter a proporção da imagem */
 }

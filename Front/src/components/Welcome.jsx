@@ -29,8 +29,8 @@ const Welcome = () => {
     <>
       <Modal isOpen={openModal} setOpen={setOpenModal} title={title} resume={resume} url={url} />
       <div className='welcome'>
-        <h2 className='text-4xl text-indigo-600 font-bold'>Seja bem-vindo</h2>
-        <p className='text-blue-600 font-bold'>Escolha qual dos jogos deseja jogar:</p>
+        <h2 className='text-4xl text-indigo-600 font-bold mb-2'>Seja bem-vindo</h2>
+        <p className='text-blue-600 font-bold mb-3'>Preparem-se para enfrentar desafios que incorporam princípios químicos<br/> como nomenclatura de ácidos, bases e sais, dissociação e cálculo de Nox.</p>
         <div className='buttons'>
           <a
             id='save'
@@ -65,7 +65,6 @@ const Welcome = () => {
             Dissociação
           </a>
         </div>
-        <img src="" alt="imagens a serem adicionadas" />
       </div>
     </>
   );
