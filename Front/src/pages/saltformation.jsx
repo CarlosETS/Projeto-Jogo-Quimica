@@ -1,67 +1,86 @@
 import React, { useState, useEffect } from 'react';
-import { DragDropContext, Droppable, Draggable  } from 'react-beautiful-dnd';
-import ListItem from '../components/ItemList.jsx';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import '../assets/saltformation.css';
+import reactionsData from '../data/ReactionData';
 
 function SaltFormation() {
-  const initialItems = [
-    { id: '1', content: 'NaOH' },
-    { id: '2', content: '+' },
-    { id: '3', content: 'H2O' },
-    { id: '4', content: '->' },
-    { id: '5', content: 'Na' },
-    { id: '6', content: '+' },
-    { id: '7', content: 'OH' },
-  ];
-
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState([]);
   const [correctOrder, setCorrectOrder] = useState([]);
+  const [itemColors, setItemColors] = useState([]);
+  const [resetColors, setResetColors] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const [currentSet, setCurrentSet] = useState(1);
+  const [orderChecked, setOrderChecked] = useState(false);
 
   useEffect(() => {
     shuffleItems();
   }, []);
 
-  const shuffleItems = () => {
-    // Função para embaralhar os itens iniciais
+  const handleContinue = () => {
+    setResetColors(true);
+    const nextSet = currentSet < 10 ? currentSet + 1 : 1;
+    setCurrentSet(nextSet);
+    shuffleItems(nextSet);
+  };
+
+  const shuffleItems = (setNumber) => {
+    const randomSet = setNumber || Math.floor(Math.random() * 10) + 1;
+    const initialItems = reactionsData[`set${randomSet}`];
     const shuffledItems = [...initialItems].sort(() => Math.random() - 0.5);
     setItems(shuffledItems);
+    setCorrectOrder(initialItems.map((item) => item.content));
+    setResetColors(false);
+    setShowButton(false);
+    setOrderChecked(false); // Reset the orderChecked state
   };
 
   const onDragEnd = (result) => {
-    if (!result.destination) return; // Dropped outside the list
+    if (!result.destination) return;
 
     const reorderedItems = Array.from(items);
     const [movedItem] = reorderedItems.splice(result.source.index, 1);
     reorderedItems.splice(result.destination.index, 0, movedItem);
 
     setItems(reorderedItems);
-    checkOrder(reorderedItems);
   };
-
   const checkOrder = () => {
-    const correctOrder = initialItems.map((item) => item.content);
     const currentOrder = items.map((item) => item.content);
-  
-    console.log(correctOrder);
-  
     const isCorrect = JSON.stringify(currentOrder) === JSON.stringify(correctOrder);
-    setCorrectOrder(isCorrect ? correctOrder : []); // Se correto, defina como a ordem correta, caso contrário, defina como uma matriz vazia
-  };
-  
-  const renderReactions = () => {
-    if (correctOrder.length > 0) { // Verifique se a ordem correta não está vazia
-      return (
-        <div className="reactions">
-          {correctOrder.map((item, index) => (
-            <div key={index} className="reaction-item">
-              {item}
-            </div>
-          ))}
-        </div>
-      );
+
+    const itemColors = currentOrder.map((item, index) => {
+      if (correctOrder[index] === item) {
+        return 'green';
+      }
+      return 'red';
+    });
+
+    setItemColors(itemColors);
+    setOrderChecked(true);
+
+    if (isCorrect) {
+      setShowButton(true);
+    } else {
+      setTimeout(() => {
+        setItemColors([]);
+        setShowButton(true);
+      }, 2000);
     }
   };
-  
+
+  const renderReactions = () => {
+    return (
+      <div className="reactions">
+        {items.map((item, index) => (
+          <div
+            key={item.id}
+            className={`reaction-item ${resetColors ? '' : itemColors[index]}`}
+          >
+            {item.content}
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="saltFormation">
@@ -81,6 +100,7 @@ function SaltFormation() {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
+                      className={`item ${resetColors ? '' : itemColors[index]}`}
                     >
                       {item.content}
                     </li>
@@ -92,13 +112,21 @@ function SaltFormation() {
           )}
         </Droppable>
       </DragDropContext>
-      <button onClick={shuffleItems} className="shuffle-button">
-        Embaralhar Itens
-      </button>
-      <button onClick={checkOrder} className="check-order-button">
-        Verificar Ordem
-      </button>
-      {renderReactions()}
+      <div className="buttons">
+        <button
+          onClick={checkOrder}
+          className={`check-order-button ${orderChecked ? 'disabled-button' : ''}`}
+          disabled={orderChecked}
+        >
+          Verificar Ordem
+        </button>
+
+        {showButton && (
+          <button onClick={handleContinue} className="button">
+            Continuar
+          </button>
+        )}
+      </div>
     </div>
   );
 }

@@ -43,53 +43,6 @@ const AddQuestions = () => {
         },
     });
 
-    const handleAddResponse = () => {
-        setResponseCount(responseCount + 1);
-        formik.setValues({
-            ...formik.values,
-            responses: [...formik.values.responses, { text: '', isCorrect: false }],
-        });
-    };
-
-    const handleDeleteAnswer = (index) => {
-        setResponseCount(responseCount - 1);
-        const newValues = formik.values.responses.filter((_, i) => i !== index);
-
-        formik.setValues({
-            ...formik.values,
-            responses: newValues,
-        });
-    };
-
-    const handleResponseChange = (index, newText) => {
-        const updatedResponses = formik.values.responses.map((response, i) => {
-            if (i === index) {
-                return { ...response, text: newText };
-            }
-            return response;
-        });
-
-        formik.setValues({
-            ...formik.values,
-            responses: updatedResponses,
-        });
-    };
-
-    const handleCorrectAnswerChange = (index) => {
-        const updatedResponses = formik.values.responses.map((response, i) => {
-            if (i === index) {
-                return { ...response, isCorrect: true };
-            } else {
-                return { ...response, isCorrect: false };
-            }
-        });
-
-        formik.setValues({
-            ...formik.values,
-            responses: updatedResponses,
-        });
-    };
-
     // Função para alternar entre as funcionalidades
     const handleFunctionalityChange = (functionality) => {
         setActiveFunctionality(functionality);
