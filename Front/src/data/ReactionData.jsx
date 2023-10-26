@@ -1,0 +1,83 @@
+const reactionsData = {
+    set1: [
+      { id: '1', content: 'NaOH' },
+      { id: '2', content: '+' },
+      { id: '3', content: 'H2O' },
+      { id: '4', content: '->' },
+      { id: '5', content: 'Na' },
+      { id: '6', content: '+' },
+      { id: '7', content: 'OH' },
+    ],
+    set2: [
+      { id: '1', content: 'C6H12O6' },
+      { id: '2', content: '->' },
+      { id: '3', content: 'H2O' },
+      { id: '4', content: '->' },
+      { id: '5', content: 'CO2' },
+    ],
+    set3: [
+      { id: '1', content: 'K2SO4' },
+      { id: '2', content: '+' },
+      { id: '3', content: 'BaCl2' },
+      { id: '4', content: '->' },
+      { id: '5', content: 'KCl' },
+      { id: '6', content: '+' },
+      { id: '7', content: 'BaSO4' },
+    ],
+    set4: [
+      { id: '1', content: 'HCl' },
+      { id: '2', content: '+' },
+      { id: '3', content: 'NaOH' },
+      { id: '4', content: '->' },
+      { id: '5', content: 'NaCl' },
+      { id: '6', content: '+' },
+      { id: '7', content: 'H2O' },
+    ],
+    set5: [
+      { id: '1', content: 'H2SO4' },
+      { id: '2', content: '+' },
+      { id: '3', content: '2NaOH' },
+      { id: '4', content: '->' },
+      { id: '5', content: 'Na2SO4' },
+      { id: '6', content: '+' },
+      { id: '7', content: '2H2O' },
+    ],
+    set6: [
+      { id: '1', content: 'Fe2O3' },
+      { id: '2', content: '+' },
+      { id: '3', content: '2Al' },
+      { id: '4', content: '->' },
+      { id: '5', content: '2Fe' },
+      { id: '6', content: '+' },
+      { id: '7', content: 'Al2O3' },
+    ],
+    set7: [
+      { id: '1', content: 'NH4NO3' },
+      { id: '2', content: '->' },
+      { id: '3', content: 'N2O' },
+      { id: '4', content: '+' },
+      { id: '5', content: '2H2O' },
+    ],
+    set8: [
+      { id: '1', content: 'C12H22O11' },
+      { id: '2', content: '->' },
+      { id: '3', content: '12C' },
+      { id: '4', content: '+' },
+      { id: '5', content: '11H2O' },
+    ],
+    set9: [
+      { id: '1', content: '2H2' },
+      { id: '2', content: '->' },
+      { id: '3', content: 'O2' },
+    ],
+    set10: [
+      { id: '1', content: '4NH3' },
+      { id: '2', content: '->' },
+      { id: '3', content: '6H2O' },
+      { id: '4', content: '+' },
+      { id: '5', content: '2N2' },
+    ],
+  };
+  
+  export default reactionsData;
+  

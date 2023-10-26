@@ -28,7 +28,7 @@ app.use(express.json());
 
 
 // Routes
-app.use("/question", questionRoute)
+app.use("/api/question", questionRoute)
 
 const connectBD = async () => {
   try {

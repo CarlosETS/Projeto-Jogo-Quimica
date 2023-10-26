@@ -3,9 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 //Routes
 import Home from './pages/home.jsx'
-import ChemistryGame from './pages/chemistrygame.jsx'
 import Ranking from './pages/ranking.jsx';
-import AddQuestions from './pages/addquestion.jsx';
+import AddQuestions from './pages/addquetion.jsx';
 import SaltFormation from './pages/saltformation.jsx';
 
 // const Componente = lazy(() => import('./pages/Auth/Login'))
